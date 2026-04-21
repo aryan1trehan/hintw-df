@@ -14,7 +14,7 @@ export default function ManifestoSection() {
             </span>
 
             {/* Main heading */}
-            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-snug sm:leading-tight mb-0 px-0 sm:px-4 md:px-8">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-bold text-white leading-tight mb-0 px-0 sm:px-4 md:px-8">
               From presence to permanence, Enhanccee builds brands that define their era.
             </h2>
 
