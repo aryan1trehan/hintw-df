@@ -251,7 +251,7 @@ export default function BlogPage() {
           <p style={{ fontSize:'.8rem', lineHeight:1.9, color:'rgba(255,255,255,.45)', marginBottom:32 }}>
             We partner with select brands each quarter. Let&apos;s talk about yours.
           </p>
-          <Link href="/contact" style={{ background:'#fff', color:'#000', fontSize:'.62rem', fontWeight:700, letterSpacing:'.2em', textTransform:'uppercase', padding:'14px 36px', display:'inline-block', transition:'background .3s' }}>
+          <Link href="/contact" style={{ background:'none', color:'#fff', fontSize:'.62rem', fontWeight:700, letterSpacing:'.2em', textTransform:'uppercase', padding:'14px 36px', display:'inline-block', transition:'all .3s', border:'1px solid rgba(255,255,255,.4)' }}>
             Get in Touch
           </Link>
         </div>
