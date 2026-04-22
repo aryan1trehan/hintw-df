@@ -102,7 +102,6 @@ export default function BlogPage() {
     <div style={{ minHeight:'100vh', background:'#000', color:'#fff', fontFamily:'var(--font-montserrat)' }}>
       <Header />
 
-      {/* ── HEADER ── */}
       <section style={{ borderBottom:'1px solid rgba(255,255,255,.08)', padding:'80px 24px 40px', background:'#000' }}>
         <div style={{ maxWidth:1280, margin:'0 auto' }}>
           <span style={{ fontSize:'.58rem', letterSpacing:'.35em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', display:'block', marginBottom:16 }}>Enhanccee</span>
@@ -117,7 +116,6 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* ── CATEGORY NAV ── */}
       <nav style={{ borderBottom:'1px solid rgba(255,255,255,.08)', background:'#000', position:'sticky', top:0, zIndex:50, overflowX:'auto' }}>
         <div style={{ maxWidth:1280, margin:'0 auto', padding:'0 24px', display:'flex', gap:0 }}>
           {categories.map(cat => (
@@ -147,14 +145,13 @@ export default function BlogPage() {
 
       <main style={{ maxWidth:1280, margin:'0 auto', padding:'48px 24px 80px' }}>
 
-        {/* ── FEATURED (only show when All or matching category) ── */}
         {(activeCategory === 'All' || featured.some(p => p.category === activeCategory)) && (
-          <div style={{ display:'grid', gridTemplateColumns:'1fr', gap:3, marginBottom:48 }}>
+          <div style={{ marginBottom:48 }}>
             <style>{`
-              @media(min-width:768px){ .blog-featured-grid { grid-template-columns: 1.4fr 1fr !important; } }
+              .blog-featured-grid { display: grid; grid-template-columns: 1fr; gap: 3px; }
+              @media(min-width:768px){ .blog-featured-grid { grid-template-columns: 1.4fr 1fr; } }
             `}</style>
-            <div className="blog-featured-grid" style={{ display:'grid', gridTemplateColumns:'1fr', gap:3 }}>
-              {/* Main featured */}
+            <div className="blog-featured-grid">
               {featured[0] && (activeCategory === 'All' || featured[0].category === activeCategory) && (
                 <div style={{ position:'relative', overflow:'hidden', minHeight:420, cursor:'pointer', background:'#111' }}>
                   <img src={featured[0].image} alt={featured[0].title} style={{ width:'100%', height:'100%', objectFit:'cover', filter:'brightness(.4) saturate(.7)', position:'absolute', inset:0 }}/>
@@ -162,7 +159,6 @@ export default function BlogPage() {
                   <div style={{ position:'absolute', bottom:0, left:0, right:0, padding:'32px' }}>
                     <span style={{ fontSize:'.55rem', letterSpacing:'.2em', textTransform:'uppercase', color:'rgba(255,255,255,.6)', background:'rgba(255,255,255,.1)', padding:'4px 12px', marginBottom:16, display:'inline-block' }}>{featured[0].category}</span>
                     <h2 style={{ fontFamily:'var(--font-cormorant)', fontSize:'clamp(1.6rem,3vw,2.4rem)', fontWeight:400, color:'#fff', lineHeight:1.2, marginBottom:12 }}>{featured[0].title}</h2>
-                    <p style={{ fontSize:'.78rem', lineHeight:1.8, color:'rgba(255,255,255,.6)', marginBottom:16, display:'none' }} className="featured-excerpt">{featured[0].excerpt}</p>
                     <div style={{ display:'flex', gap:16, fontSize:'.62rem', color:'rgba(255,255,255,.4)', letterSpacing:'.06em' }}>
                       <span>{featured[0].date}</span>
                       <span>·</span>
@@ -171,7 +167,6 @@ export default function BlogPage() {
                   </div>
                 </div>
               )}
-              {/* Second featured */}
               {featured[1] && (activeCategory === 'All' || featured[1].category === activeCategory) && (
                 <div style={{ position:'relative', overflow:'hidden', minHeight:300, cursor:'pointer', background:'#111' }}>
                   <img src={featured[1].image} alt={featured[1].title} style={{ width:'100%', height:'100%', objectFit:'cover', filter:'brightness(.4) saturate(.7)', position:'absolute', inset:0 }}/>
@@ -191,7 +186,6 @@ export default function BlogPage() {
           </div>
         )}
 
-        {/* ── DIVIDER ── */}
         <div style={{ display:'flex', alignItems:'center', gap:20, marginBottom:40 }}>
           <span style={{ fontSize:'.58rem', letterSpacing:'.3em', textTransform:'uppercase', color:'rgba(255,255,255,.4)' }}>
             {activeCategory === 'All' ? 'Latest Articles' : activeCategory}
@@ -199,7 +193,6 @@ export default function BlogPage() {
           <div style={{ flex:1, height:1, background:'rgba(255,255,255,.08)' }}/>
         </div>
 
-        {/* ── GRID ── */}
         <style>{`
           .blog-grid { display: grid; grid-template-columns: 1fr; gap: 3px; }
           @media(min-width:640px){ .blog-grid { grid-template-columns: 1fr 1fr; } }
@@ -208,7 +201,7 @@ export default function BlogPage() {
           .blog-card:hover .blog-card-title { color: rgba(255,255,255,.8); }
         `}</style>
         <div className="blog-grid">
-          {(activeCategory === 'All' ? filtered : allFiltered.filter(p => !featured.includes(p) || activeCategory !== 'All')).map((post, i) => (
+          {(activeCategory === 'All' ? filtered : allFiltered.filter(p => !featured.includes(p) || activeCategory !== 'All')).map((post) => (
             <div key={post.id} className="blog-card" style={{ background:'#0d0d0d', border:'1px solid rgba(255,255,255,.06)', cursor:'pointer', overflow:'hidden', display:'flex', flexDirection:'column' }}>
               <div style={{ overflow:'hidden', height:220, position:'relative' }}>
                 <img
@@ -231,7 +224,6 @@ export default function BlogPage() {
           ))}
         </div>
 
-        {/* Empty state */}
         {allFiltered.length === 0 && (
           <div style={{ textAlign:'center', padding:'80px 0' }}>
             <p style={{ fontFamily:'var(--font-cormorant)', fontSize:'2rem', color:'rgba(255,255,255,.3)' }}>No articles yet in this category</p>
@@ -241,7 +233,6 @@ export default function BlogPage() {
 
       </main>
 
-      {/* ── CTA STRIP ── */}
       <section style={{ background:'#0a0a0a', borderTop:'1px solid rgba(255,255,255,.06)', padding:'60px 24px', textAlign:'center' }}>
         <div style={{ maxWidth:640, margin:'0 auto' }}>
           <span style={{ fontSize:'.58rem', letterSpacing:'.35em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', display:'block', marginBottom:20 }}>Work With Us</span>
@@ -251,7 +242,12 @@ export default function BlogPage() {
           <p style={{ fontSize:'.8rem', lineHeight:1.9, color:'rgba(255,255,255,.45)', marginBottom:32 }}>
             We partner with select brands each quarter. Let&apos;s talk about yours.
           </p>
-          <Link href="/contact" style={{ background:'none', color:'#fff', fontSize:'.62rem', fontWeight:700, letterSpacing:'.2em', textTransform:'uppercase', padding:'14px 36px', display:'inline-block', transition:'all .3s', border:'1px solid rgba(255,255,255,.4)' }}>
+          <Link
+            href="/contact"
+            style={{ background:'none', color:'#fff', fontSize:'.62rem', fontWeight:700, letterSpacing:'.2em', textTransform:'uppercase', padding:'14px 36px', display:'inline-block', border:'1px solid rgba(255,255,255,.4)', transition:'all .3s' }}
+            onMouseEnter={e => { e.currentTarget.style.background='#fff'; e.currentTarget.style.color='#000'; e.currentTarget.style.borderColor='#fff'; }}
+            onMouseLeave={e => { e.currentTarget.style.background='none'; e.currentTarget.style.color='#fff'; e.currentTarget.style.borderColor='rgba(255,255,255,.4)'; }}
+          >
             Get in Touch
           </Link>
         </div>
