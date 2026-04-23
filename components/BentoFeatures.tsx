@@ -333,7 +333,7 @@ export default function BentoFeatures() {
         `}</style>
         <div className="bento-grid">
           <CanvasCard id="chart" title="We use real data, not guesswork" subtitle="Every campaign is optimised" initFn={initChart} />
-          <CanvasCard id="hierarchy" title="Transparent reporting" subtitle="No hidden fees" initFn={initHierarchy} />
+          <CanvasCard id="hierarchy" title="Unveiled Metrics" subtitle="Total visibility into your investments" initFn={initHierarchy} />
           <CanvasCard id="barchart" title="Experience across top industries" subtitle="Every campaign is optimised" initFn={initBarChart} />
           <CanvasCard id="progress" title="Client-first approach" subtitle="Your goals become our KPIs" initFn={initProgress} />
         </div>
