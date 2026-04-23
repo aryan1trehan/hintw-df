@@ -266,7 +266,15 @@ function initProgress(canvas: HTMLCanvasElement) {
   function roundRect(x: number,y: number,w: number,h: number,r: number){
     ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);ctx.lineTo(x+r,y+h);ctx.arcTo(x,y+h,x,y+h-r,r);ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);ctx.closePath()
   }
-  const names=['AR','BK','CS']
+  const logoSrcs = ['/outro.png', '/Bunai_.png', '/Floristry.jpeg']
+  const logoImgs = useRef<HTMLImageElement[]>([])
+  if (logoImgs.current.length === 0) {
+    logoSrcs.forEach(src => {
+      const img = new Image()
+      img.src = src
+      logoImgs.current.push(img)
+    })
+  }
   function draw(ts: number){
     if(!startTime)startTime=ts
     const loopT=((ts-startTime)/1000)%TOTAL_DUR
@@ -300,13 +308,22 @@ function initProgress(canvas: HTMLCanvasElement) {
     ctx.beginPath();ctx.arc(cX,cY,cR,-Math.PI/2,-Math.PI/2+Math.PI*2*cP);ctx.strokeStyle='#6ee8ca';ctx.lineWidth=3.5*DPR;ctx.lineCap='round';ctx.stroke()
     ctx.fillStyle='#ffffff';ctx.font=`600 ${12*DPR}px -apple-system,sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(Math.round(cP/0.67*67)+'%',cX,cY);ctx.restore()
     const avR=24*DPR,avStartX=pX+14*DPR,avY=pY-avR-4*DPR
-    names.forEach((name,i)=>{
+    logoSrcs.forEach((_, i)=>{
       const avA=clamp(easeOutBack(clamp((loopT-0.3-i*0.12)/0.4,0,1)),0,1)
       const avX=avStartX+avR+i*(avR*2-6*DPR*1.5)
-      ctx.save();ctx.globalAlpha=avA;ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.fillStyle='#ffffff';ctx.fill();ctx.fillStyle='#1a1a2e';ctx.font=`bold ${avR*0.9}px Georgia,serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(name,avX,avY+avR*0.06);ctx.strokeStyle='rgba(110,232,202,0.35)';ctx.lineWidth=1.5*DPR;ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.stroke();ctx.restore()
+      const img = logoImgs.current[i]
+      ctx.save();ctx.globalAlpha=avA
+      ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.fillStyle='#ffffff';ctx.fill()
+      ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.clip()
+      if(img && img.complete && img.naturalWidth>0){
+        const pad=avR*0.1,size=(avR-pad)*2
+        ctx.drawImage(img,avX-avR+pad,avY-avR+pad,size,size)
+      }
+      ctx.restore()
+      ctx.save();ctx.globalAlpha=avA;ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.strokeStyle='rgba(110,232,202,0.35)';ctx.lineWidth=1.5*DPR;ctx.stroke();ctx.restore()
     })
-    const plusX=avStartX+avR+names.length*(avR*2-6*DPR*1.5)
-    const plusA=clamp(easeOutBack(clamp((loopT-0.3-names.length*0.12)/0.4,0,1)),0,1)
+    const plusX=avStartX+avR+logoSrcs.length*(avR*2-6*DPR*1.5)
+    const plusA=clamp(easeOutBack(clamp((loopT-0.3-logoSrcs.length*0.12)/0.4,0,1)),0,1)
     ctx.save();ctx.globalAlpha=plusA;ctx.beginPath();ctx.arc(plusX,avY,avR,0,Math.PI*2);ctx.fillStyle='#1e3b36';ctx.fill();ctx.strokeStyle='rgba(110,232,202,0.3)';ctx.lineWidth=1.5*DPR;ctx.stroke();ctx.fillStyle='rgba(255,255,255,0.7)';ctx.font=`300 ${18*DPR}px -apple-system`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('+',plusX,avY);ctx.restore()
     const firstAvX=avStartX+avR,bA=clamp(easeOutBack(clamp((loopT-0.5)/0.35,0,1)),0,1)
     const bW=34*DPR,bH=18*DPR,bR2=9*DPR,bX=firstAvX-bW/2,bY2=avY-avR-bH*0.3
@@ -333,7 +350,7 @@ export default function BentoFeatures() {
         `}</style>
         <div className="bento-grid">
           <CanvasCard id="chart" title="We use real data, not guesswork" subtitle="Every campaign is optimised" initFn={initChart} />
-          <CanvasCard id="hierarchy" title="Unveiled Metrics" subtitle="Total visibility into your investments" initFn={initHierarchy} />
+          <CanvasCard id="hierarchy" title="Transparent reporting" subtitle="No hidden fees" initFn={initHierarchy} />
           <CanvasCard id="barchart" title="Experience across top industries" subtitle="Every campaign is optimised" initFn={initBarChart} />
           <CanvasCard id="progress" title="Client-first approach" subtitle="Your goals become our KPIs" initFn={initProgress} />
         </div>
