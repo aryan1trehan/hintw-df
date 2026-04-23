@@ -267,14 +267,11 @@ function initProgress(canvas: HTMLCanvasElement) {
     ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);ctx.lineTo(x+r,y+h);ctx.arcTo(x,y+h,x,y+h-r,r);ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);ctx.closePath()
   }
   const logoSrcs = ['/outro.png', '/Bunai_.png', '/Floristry.jpeg']
-  const logoImgs = useRef<HTMLImageElement[]>([])
-  if (logoImgs.current.length === 0) {
-    logoSrcs.forEach(src => {
-      const img = new Image()
-      img.src = src
-      logoImgs.current.push(img)
-    })
-  }
+  const logoImgs: HTMLImageElement[] = logoSrcs.map(src => {
+    const img = new Image()
+    img.src = src
+    return img
+  })
   function draw(ts: number){
     if(!startTime)startTime=ts
     const loopT=((ts-startTime)/1000)%TOTAL_DUR
@@ -311,7 +308,7 @@ function initProgress(canvas: HTMLCanvasElement) {
     logoSrcs.forEach((_, i)=>{
       const avA=clamp(easeOutBack(clamp((loopT-0.3-i*0.12)/0.4,0,1)),0,1)
       const avX=avStartX+avR+i*(avR*2-6*DPR*1.5)
-      const img = logoImgs.current[i]
+      const img = logoImgs[i]
       ctx.save();ctx.globalAlpha=avA
       ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.fillStyle='#ffffff';ctx.fill()
       ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.clip()
