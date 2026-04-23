@@ -1,6 +1,7 @@
 import Hero from '@/components/Hero'
 import MotionLogo from '@/components/MotionLogos'
 import ManifestoSection from '@/components/ManifestoSection' 
+import BentoFeatures from '@/components/BentoFeatures'
 import ServicesSection from '@/components/ServicesSection'
 import PhilosophySection from '@/components/PhilosophySection'
 import ClienteleSection from '@/components/ClienteleSection'
@@ -16,6 +17,7 @@ export default function Home() {
       <Hero />
       <MotionLogo />
       <ManifestoSection />
+      <BentoFeatures />
       <ServicesSection />
       <PhilosophySection />
       <ClienteleSection />
