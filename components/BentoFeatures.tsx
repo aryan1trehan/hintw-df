@@ -269,6 +269,7 @@ function initProgress(canvas: HTMLCanvasElement) {
   const logoSrcs = ['/outro.png', '/Bunai_.png', '/Floristry.jpeg']
   const logoImgs: HTMLImageElement[] = logoSrcs.map(src => {
     const img = new Image()
+    img.crossOrigin = 'anonymous'
     img.src = src
     return img
   })
@@ -311,10 +312,12 @@ function initProgress(canvas: HTMLCanvasElement) {
       const img = logoImgs[i]
       ctx.save();ctx.globalAlpha=avA
       ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.fillStyle='#ffffff';ctx.fill()
-      ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.clip()
       if(img && img.complete && img.naturalWidth>0){
+        ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.clip()
         const pad=avR*0.1,size=(avR-pad)*2
         ctx.drawImage(img,avX-avR+pad,avY-avR+pad,size,size)
+      } else {
+        ctx.fillStyle='rgba(255,255,255,0.15)';ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.fill()
       }
       ctx.restore()
       ctx.save();ctx.globalAlpha=avA;ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.strokeStyle='rgba(110,232,202,0.35)';ctx.lineWidth=1.5*DPR;ctx.stroke();ctx.restore()
