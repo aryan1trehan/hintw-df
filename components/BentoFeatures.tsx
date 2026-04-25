@@ -10,7 +10,6 @@ function CanvasCard({ id, title, subtitle, initFn }: { id: string; title: string
     const canvas = canvasRef.current
     const wrapper = wrapperRef.current
     if (!canvas || !wrapper) return
-
     const DPR = window.devicePixelRatio || 1
     function resize() {
       if (!canvas || !wrapper) return
@@ -21,7 +20,6 @@ function CanvasCard({ id, title, subtitle, initFn }: { id: string; title: string
     }
     resize()
     window.addEventListener('resize', resize)
-
     const cleanup = initFn(canvas)
     return () => {
       window.removeEventListener('resize', resize)
@@ -194,9 +192,9 @@ function initHierarchy(canvas: HTMLCanvasElement) {
   }
   function drawGoogle(cx: number,cy: number,size: number,alpha: number) {
     ctx.save(); ctx.globalAlpha=alpha; const s=size*0.34
-    const ax=cx,ay=cy-s*0.6,lx=cx-s*0.5,ly=cy+s*0.4,rx=cx+s*0.5,ry=cy+s*0.4
+    const ax=cx,ay=cy-s*0.6,lx=cx-s*0.5,ly=cy+s*0.4,rx=cx+s*0.5
     const lCX=(ax+lx)/2,lCY=(ay+ly)/2,lA=Math.atan2(lx-ax,ay-ly)
-    const rCX=(ax+rx)/2,rCY=(ay+ry)/2,rA=Math.atan2(rx-ax,ay-ry)
+    const rCX=(ax+rx)/2,rCY=(ay+(cx+s*0.4))/2,rA=Math.atan2(rx-ax,ay-ly)
     const hL=Math.sqrt(Math.pow(s*0.5,2)+Math.pow(s*1.0,2))/2,hW=s*0.19
     ctx.save(); ctx.translate(lCX,lCY); ctx.rotate(lA); ctx.beginPath(); ctx.ellipse(0,0,hW,hL,0,0,Math.PI*2); ctx.fillStyle='#FBBC04'; ctx.fill(); ctx.restore()
     ctx.save(); ctx.translate(rCX,rCY); ctx.rotate(rA); ctx.beginPath(); ctx.ellipse(0,0,hW,hL,0,0,Math.PI*2); ctx.fillStyle='#4285F4'; ctx.fill(); ctx.restore()
@@ -306,33 +304,25 @@ function initProgress(canvas: HTMLCanvasElement) {
     ctx.beginPath();ctx.arc(cX,cY,cR,-Math.PI/2,-Math.PI/2+Math.PI*2*cP);ctx.strokeStyle='#6ee8ca';ctx.lineWidth=3.5*DPR;ctx.lineCap='round';ctx.stroke()
     ctx.fillStyle='#ffffff';ctx.font=`600 ${12*DPR}px -apple-system,sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(Math.round(cP/0.67*67)+'%',cX,cY);ctx.restore()
     const avR=24*DPR,avStartX=pX+14*DPR,avY=pY-avR-4*DPR
-    logoSrcs.forEach((_, i)=>{
+    logoSrcs.forEach((_,i)=>{
       const avA=clamp(easeOutBack(clamp((loopT-0.3-i*0.12)/0.4,0,1)),0,1)
       const avX=avStartX+avR+i*(avR*2-6*DPR*1.5)
-      const img = logoImgs[i]
+      const img=logoImgs[i]
       ctx.save()
-      ctx.globalAlpha = avA
-      // clip to circle
+      ctx.globalAlpha=avA
       ctx.beginPath()
-      ctx.arc(avX, avY, avR, 0, Math.PI*2)
+      ctx.arc(avX,avY,avR,0,Math.PI*2)
       ctx.clip()
-      // white background
-      ctx.fillStyle = '#ffffff'
+      ctx.fillStyle='#ffffff'
       ctx.fill()
-      // draw image if loaded
-      if (img && img.complete && img.naturalWidth > 0) {
-        const pad = avR * 0.15
-        ctx.drawImage(img, avX - avR + pad, avY - avR + pad, (avR - pad) * 2, (avR - pad) * 2)
+      if(img&&img.complete&&img.naturalWidth>0){
+        const p2=avR*0.15
+        ctx.drawImage(img,avX-avR+p2,avY-avR+p2,(avR-p2)*2,(avR-p2)*2)
       }
       ctx.restore()
-      // border ring
-      ctx.save()
-      ctx.globalAlpha = avA
-      ctx.beginPath()
-      ctx.arc(avX, avY, avR, 0, Math.PI*2)
-      ctx.strokeStyle = 'rgba(110,232,202,0.5)'
-      ctx.lineWidth = 1.5 * DPR
-      ctx.stroke()
+      ctx.save();ctx.globalAlpha=avA
+      ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2)
+      ctx.strokeStyle='rgba(110,232,202,0.5)';ctx.lineWidth=1.5*DPR;ctx.stroke()
       ctx.restore()
     })
     const plusX=avStartX+avR+logoSrcs.length*(avR*2-6*DPR*1.5)
@@ -363,7 +353,7 @@ export default function BentoFeatures() {
         `}</style>
         <div className="bento-grid">
           <CanvasCard id="chart" title="We use real data, not guesswork" subtitle="Every campaign is optimised" initFn={initChart} />
-          <CanvasCard id="hierarchy" title="Transparent reporting" subtitle="No hidden fees" initFn={initHierarchy} />
+          <CanvasCard id="hierarchy" title="Unveiled Metrics" subtitle="Total visibility into your investments" initFn={initHierarchy} />
           <CanvasCard id="barchart" title="Experience across top industries" subtitle="Every campaign is optimised" initFn={initBarChart} />
           <CanvasCard id="progress" title="Client-first approach" subtitle="Your goals become our KPIs" initFn={initProgress} />
         </div>
