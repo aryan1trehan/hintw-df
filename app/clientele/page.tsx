@@ -11,20 +11,20 @@ import TabeerIndia from '@/components/IMG/Tabeer India .png'
 import PinkFalcon from '@/components/IMG/Pink Falcon .png'
 import FabcurateNew from '@/components/IMG/Fabcurate .png'
 import Eveman from '@/components/IMG/Eveman.png'
-import Bunai from '@/components/IMG/Bunai .png'
+import Bunai from '@/components/IMG/Bunai_.png'
 
 const clients = [
-  { name: 'Fabcurate', logo: Fabcurate },
-  { name: 'Superkicks', logo: Superkicks },
-  { name: 'Tichu', logo: Tichu },
-  { name: 'Rangat Jaipur', logo: RangatJaipur },
-  { name: 'VAKO', logo: Vako },
-  { name: 'OUTRO', logo: Outro },
-  { name: 'Tabeer India', logo: TabeerIndia },
-  { name: 'The Pink Falcon', logo: PinkFalcon },
-  { name: 'Fabcurate', logo: FabcurateNew },
-  { name: 'Evemen', logo: Eveman },
-  { name: 'Bunaai', logo: Bunai },
+  { name: 'Fabcurate', logo: Fabcurate, invert: true },
+  { name: 'Superkicks', logo: Superkicks, invert: true },
+  { name: 'Tichu', logo: Tichu, invert: true },
+  { name: 'Rangat Jaipur', logo: RangatJaipur, invert: true },
+  { name: 'VAKO', logo: Vako, invert: true },
+  { name: 'OUTRO', logo: Outro, invert: true },
+  { name: 'Tabeer India', logo: TabeerIndia, invert: false },
+  { name: 'The Pink Falcon', logo: PinkFalcon, invert: false },
+  { name: 'Fabcurate', logo: FabcurateNew, invert: false },
+  { name: 'Evemen', logo: Eveman, invert: false },
+  { name: 'Bunaai', logo: Bunai, invert: false },
 ]
 
 export default function ClientelePage() {
@@ -54,7 +54,7 @@ export default function ClientelePage() {
                     alt={client.name}
                     fill
                     sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 360px"
-                    className="object-contain object-center invert opacity-95 group-hover:opacity-100 transition-all duration-300"
+                    className={`object-contain object-center opacity-95 group-hover:opacity-100 transition-all duration-300 ${client.invert ? 'invert' : ''}`}
                   />
                 </div>
               </div>
