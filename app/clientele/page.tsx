@@ -7,9 +7,9 @@ import Tichu from '@/components/IMG/images (4)_edited.png'
 import RangatJaipur from '@/components/IMG/images (4)_edited_edited.jpg'
 import Vako from '@/components/IMG/Untitled design (7).png'
 import Outro from '@/components/IMG/Untitled design (8).png'
-import TabeerIndia from '@/components/IMG/Tabeer_India_.png'
-import PinkFalcon from '@/components/IMG/Pink_Falcon_.png'
-import FabcurateNew from '@/components/IMG/Fabcurate_.png'
+import TabeerIndia from '@/components/IMG/Tabeer India .png'
+import PinkFalcon from '@/components/IMG/Pink Falcon .png'
+import FabcurateNew from '@/components/IMG/Fabcurate .png'
 import Eveman from '@/components/IMG/Eveman.png'
 import Bunai from '@/components/IMG/Bunai_.png'
 
@@ -49,7 +49,13 @@ export default function ClientelePage() {
             {clients.map((client, i) => (
               <div key={i} className="flex items-center justify-center px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 rounded-xl sm:rounded-2xl border border-white/20 bg-black hover:border-white/45 transition-all duration-300 group min-h-0">
                 <div className="relative mx-auto h-36 w-full max-w-[300px] sm:h-40 sm:max-w-[320px] md:h-44 lg:h-48">
-                  <Image src={client.logo} alt={client.name} fill sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 360px" className="object-contain object-center invert opacity-95 group-hover:opacity-100 transition-all duration-300" />
+                  <Image
+                    src={client.logo}
+                    alt={client.name}
+                    fill
+                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 360px"
+                    className="object-contain object-center invert opacity-95 group-hover:opacity-100 transition-all duration-300"
+                  />
                 </div>
               </div>
             ))}
