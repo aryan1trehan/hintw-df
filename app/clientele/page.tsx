@@ -7,6 +7,12 @@ import Tichu from '@/components/IMG/images (4)_edited.png'
 import RangatJaipur from '@/components/IMG/images (4)_edited_edited.jpg'
 import Vako from '@/components/IMG/Untitled design (7).png'
 import Outro from '@/components/IMG/Untitled design (8).png'
+import TabeerIndia from '@/components/IMG/Tabeer_India_.png'
+import VakoNew from '@/components/IMG/Vako.png'
+import PinkFalcon from '@/components/IMG/Pink_Falcon_.png'
+import FabcurateNew from '@/components/IMG/Fabcurate_.png'
+import Eveman from '@/components/IMG/Eveman.png'
+import Bunai from '@/components/IMG/Bunai_.png'
 
 const clients = [
   { name: 'Fabcurate', logo: Fabcurate },
@@ -15,13 +21,18 @@ const clients = [
   { name: 'Rangat Jaipur', logo: RangatJaipur },
   { name: 'VAKO', logo: Vako },
   { name: 'OUTRO', logo: Outro },
+  { name: 'Tabeer India', logo: TabeerIndia },
+  { name: 'Vako', logo: VakoNew },
+  { name: 'The Pink Falcon', logo: PinkFalcon },
+  { name: 'Fabcurate', logo: FabcurateNew },
+  { name: 'Evemen', logo: Eveman },
+  { name: 'Bunaai', logo: Bunai },
 ]
 
 export default function ClientelePage() {
   return (
     <main className="min-h-screen bg-black overflow-x-hidden pt-20 sm:pt-24">
       <Header />
-
       <section className="py-12 sm:py-16 md:py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
           <div className="text-center mb-10 sm:mb-12 md:mb-14">
@@ -36,11 +47,10 @@ export default function ClientelePage() {
               Select brands that trust Enhanccee with their identity, digital presence, and growth.
             </p>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-6xl mx-auto">
-            {clients.map((client) => (
+            {clients.map((client, i) => (
               <div
-                key={client.name}
+                key={i}
                 className="flex items-center justify-center px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 rounded-xl sm:rounded-2xl border border-white/20 bg-black hover:border-white/45 transition-all duration-300 group min-h-0"
               >
                 <div className="relative mx-auto h-36 w-full max-w-[300px] sm:h-40 sm:max-w-[320px] md:h-44 lg:h-48">
@@ -57,7 +67,6 @@ export default function ClientelePage() {
           </div>
         </div>
       </section>
-
       <Footer />
     </main>
   )
