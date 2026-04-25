@@ -310,17 +310,30 @@ function initProgress(canvas: HTMLCanvasElement) {
       const avA=clamp(easeOutBack(clamp((loopT-0.3-i*0.12)/0.4,0,1)),0,1)
       const avX=avStartX+avR+i*(avR*2-6*DPR*1.5)
       const img = logoImgs[i]
-      ctx.save();ctx.globalAlpha=avA
-      ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.fillStyle='#ffffff';ctx.fill()
-      if(img && img.complete && img.naturalWidth>0){
-        ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.clip()
-        const pad=avR*0.1,size=(avR-pad)*2
-        ctx.drawImage(img,avX-avR+pad,avY-avR+pad,size,size)
-      } else {
-        ctx.fillStyle='rgba(255,255,255,0.15)';ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.fill()
+      ctx.save()
+      ctx.globalAlpha = avA
+      // clip to circle
+      ctx.beginPath()
+      ctx.arc(avX, avY, avR, 0, Math.PI*2)
+      ctx.clip()
+      // white background
+      ctx.fillStyle = '#ffffff'
+      ctx.fill()
+      // draw image if loaded
+      if (img && img.complete && img.naturalWidth > 0) {
+        const pad = avR * 0.15
+        ctx.drawImage(img, avX - avR + pad, avY - avR + pad, (avR - pad) * 2, (avR - pad) * 2)
       }
       ctx.restore()
-      ctx.save();ctx.globalAlpha=avA;ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2);ctx.strokeStyle='rgba(110,232,202,0.35)';ctx.lineWidth=1.5*DPR;ctx.stroke();ctx.restore()
+      // border ring
+      ctx.save()
+      ctx.globalAlpha = avA
+      ctx.beginPath()
+      ctx.arc(avX, avY, avR, 0, Math.PI*2)
+      ctx.strokeStyle = 'rgba(110,232,202,0.5)'
+      ctx.lineWidth = 1.5 * DPR
+      ctx.stroke()
+      ctx.restore()
     })
     const plusX=avStartX+avR+logoSrcs.length*(avR*2-6*DPR*1.5)
     const plusA=clamp(easeOutBack(clamp((loopT-0.3-logoSrcs.length*0.12)/0.4,0,1)),0,1)
@@ -350,7 +363,7 @@ export default function BentoFeatures() {
         `}</style>
         <div className="bento-grid">
           <CanvasCard id="chart" title="We use real data, not guesswork" subtitle="Every campaign is optimised" initFn={initChart} />
-          <CanvasCard id="hierarchy" title="Unveiled Metrics" subtitle="Total visibility into your investments" initFn={initHierarchy} />
+          <CanvasCard id="hierarchy" title="Transparent reporting" subtitle="No hidden fees" initFn={initHierarchy} />
           <CanvasCard id="barchart" title="Experience across top industries" subtitle="Every campaign is optimised" initFn={initBarChart} />
           <CanvasCard id="progress" title="Client-first approach" subtitle="Your goals become our KPIs" initFn={initProgress} />
         </div>
