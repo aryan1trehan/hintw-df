@@ -4,7 +4,6 @@ import ManifestoSection from '@/components/ManifestoSection'
 import BentoFeatures from '@/components/BentoFeatures'
 import ServicesSection from '@/components/ServicesSection'
 import PhilosophySection from '@/components/PhilosophySection'
-import ClienteleSection from '@/components/ClienteleSection'
 import ResultsSection from '@/components/ResultsSection'
 import ContactSection from '@/components/ContactSection'
 import Footer from '@/components/Footer'
@@ -20,7 +19,6 @@ export default function Home() {
       <BentoFeatures />
       <ServicesSection />
       <PhilosophySection />
-      <ClienteleSection />
       <ResultsSection />
       <ContactSection />
       <Footer />
