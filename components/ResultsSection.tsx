@@ -25,7 +25,7 @@ export default function ResultsSection() {
 
   const results = [
     {
-      number: '7+',
+      number: '15+',
       label: 'Years of Experience',
       description: '',
       icon: '◆',
