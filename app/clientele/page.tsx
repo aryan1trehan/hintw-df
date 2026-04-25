@@ -11,7 +11,7 @@ import TabeerIndia from '@/components/IMG/Tabeer India .png'
 import PinkFalcon from '@/components/IMG/Pink Falcon .png'
 import FabcurateNew from '@/components/IMG/Fabcurate .png'
 import Eveman from '@/components/IMG/Eveman.png'
-import Bunai from '@/components/IMG/Bunai_.png'
+import Bunai from '@/components/IMG/Bunai .png'
 
 const clients = [
   { name: 'Fabcurate', logo: Fabcurate },
