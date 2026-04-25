@@ -194,7 +194,7 @@ function initHierarchy(canvas: HTMLCanvasElement) {
     ctx.save(); ctx.globalAlpha=alpha; const s=size*0.34
     const ax=cx,ay=cy-s*0.6,lx=cx-s*0.5,ly=cy+s*0.4,rx=cx+s*0.5
     const lCX=(ax+lx)/2,lCY=(ay+ly)/2,lA=Math.atan2(lx-ax,ay-ly)
-    const rCX=(ax+rx)/2,rCY=(ay+(cx+s*0.4))/2,rA=Math.atan2(rx-ax,ay-ly)
+    const rCX=(ax+rx)/2,rCY=(ay+(cy+s*0.4))/2,rA=Math.atan2(rx-ax,ay-ly)
     const hL=Math.sqrt(Math.pow(s*0.5,2)+Math.pow(s*1.0,2))/2,hW=s*0.19
     ctx.save(); ctx.translate(lCX,lCY); ctx.rotate(lA); ctx.beginPath(); ctx.ellipse(0,0,hW,hL,0,0,Math.PI*2); ctx.fillStyle='#FBBC04'; ctx.fill(); ctx.restore()
     ctx.save(); ctx.translate(rCX,rCY); ctx.rotate(rA); ctx.beginPath(); ctx.ellipse(0,0,hW,hL,0,0,Math.PI*2); ctx.fillStyle='#4285F4'; ctx.fill(); ctx.restore()
