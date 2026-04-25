@@ -267,7 +267,6 @@ function initProgress(canvas: HTMLCanvasElement) {
   const logoSrcs = ['/outro.png', '/Bunai_.png', '/Floristry.jpeg']
   const logoImgs: HTMLImageElement[] = logoSrcs.map(src => {
     const img = new Image()
-    img.crossOrigin = 'anonymous'
     img.src = src
     return img
   })
