@@ -10,6 +10,7 @@ function CanvasCard({ id, title, subtitle, initFn }: { id: string; title: string
     const canvas = canvasRef.current
     const wrapper = wrapperRef.current
     if (!canvas || !wrapper) return
+
     const DPR = window.devicePixelRatio || 1
     function resize() {
       if (!canvas || !wrapper) return
@@ -20,6 +21,7 @@ function CanvasCard({ id, title, subtitle, initFn }: { id: string; title: string
     }
     resize()
     window.addEventListener('resize', resize)
+
     const cleanup = initFn(canvas)
     return () => {
       window.removeEventListener('resize', resize)
@@ -192,9 +194,9 @@ function initHierarchy(canvas: HTMLCanvasElement) {
   }
   function drawGoogle(cx: number,cy: number,size: number,alpha: number) {
     ctx.save(); ctx.globalAlpha=alpha; const s=size*0.34
-    const ax=cx,ay=cy-s*0.6,lx=cx-s*0.5,ly=cy+s*0.4,rx=cx+s*0.5
+    const ax=cx,ay=cy-s*0.6,lx=cx-s*0.5,ly=cy+s*0.4,rx=cx+s*0.5,ry=cy+s*0.4
     const lCX=(ax+lx)/2,lCY=(ay+ly)/2,lA=Math.atan2(lx-ax,ay-ly)
-    const rCX=(ax+rx)/2,rCY=(ay+(cy+s*0.4))/2,rA=Math.atan2(rx-ax,ay-ly)
+    const rCX=(ax+rx)/2,rCY=(ay+ry)/2,rA=Math.atan2(rx-ax,ay-ry)
     const hL=Math.sqrt(Math.pow(s*0.5,2)+Math.pow(s*1.0,2))/2,hW=s*0.19
     ctx.save(); ctx.translate(lCX,lCY); ctx.rotate(lA); ctx.beginPath(); ctx.ellipse(0,0,hW,hL,0,0,Math.PI*2); ctx.fillStyle='#FBBC04'; ctx.fill(); ctx.restore()
     ctx.save(); ctx.translate(rCX,rCY); ctx.rotate(rA); ctx.beginPath(); ctx.ellipse(0,0,hW,hL,0,0,Math.PI*2); ctx.fillStyle='#4285F4'; ctx.fill(); ctx.restore()
@@ -264,9 +266,10 @@ function initProgress(canvas: HTMLCanvasElement) {
   function roundRect(x: number,y: number,w: number,h: number,r: number){
     ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);ctx.lineTo(x+r,y+h);ctx.arcTo(x,y+h,x,y+h-r,r);ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);ctx.closePath()
   }
-  const logoSrcs = ['/outro.png', '/Bunai_.png', '/Floristry.jpeg']
+  const logoSrcs = ['/outro.png', '/Bunai .png', '/Floristry.jpeg']
   const logoImgs: HTMLImageElement[] = logoSrcs.map(src => {
     const img = new Image()
+    img.onload = () => { startTime = null }
     img.src = src
     return img
   })
@@ -303,25 +306,33 @@ function initProgress(canvas: HTMLCanvasElement) {
     ctx.beginPath();ctx.arc(cX,cY,cR,-Math.PI/2,-Math.PI/2+Math.PI*2*cP);ctx.strokeStyle='#6ee8ca';ctx.lineWidth=3.5*DPR;ctx.lineCap='round';ctx.stroke()
     ctx.fillStyle='#ffffff';ctx.font=`600 ${12*DPR}px -apple-system,sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(Math.round(cP/0.67*67)+'%',cX,cY);ctx.restore()
     const avR=24*DPR,avStartX=pX+14*DPR,avY=pY-avR-4*DPR
-    logoSrcs.forEach((_,i)=>{
+    logoSrcs.forEach((_, i)=>{
       const avA=clamp(easeOutBack(clamp((loopT-0.3-i*0.12)/0.4,0,1)),0,1)
       const avX=avStartX+avR+i*(avR*2-6*DPR*1.5)
-      const img=logoImgs[i]
+      const img = logoImgs[i]
       ctx.save()
-      ctx.globalAlpha=avA
+      ctx.globalAlpha = avA
+      // clip to circle
       ctx.beginPath()
-      ctx.arc(avX,avY,avR,0,Math.PI*2)
+      ctx.arc(avX, avY, avR, 0, Math.PI*2)
       ctx.clip()
-      ctx.fillStyle='#ffffff'
+      // white background
+      ctx.fillStyle = '#ffffff'
       ctx.fill()
-      if(img&&img.complete&&img.naturalWidth>0){
-        const p2=avR*0.15
-        ctx.drawImage(img,avX-avR+p2,avY-avR+p2,(avR-p2)*2,(avR-p2)*2)
+      // draw image if loaded
+      if (img && img.complete && img.naturalWidth > 0) {
+        const pad = avR * 0.15
+        ctx.drawImage(img, avX - avR + pad, avY - avR + pad, (avR - pad) * 2, (avR - pad) * 2)
       }
       ctx.restore()
-      ctx.save();ctx.globalAlpha=avA
-      ctx.beginPath();ctx.arc(avX,avY,avR,0,Math.PI*2)
-      ctx.strokeStyle='rgba(110,232,202,0.5)';ctx.lineWidth=1.5*DPR;ctx.stroke()
+      // border ring
+      ctx.save()
+      ctx.globalAlpha = avA
+      ctx.beginPath()
+      ctx.arc(avX, avY, avR, 0, Math.PI*2)
+      ctx.strokeStyle = 'rgba(110,232,202,0.5)'
+      ctx.lineWidth = 1.5 * DPR
+      ctx.stroke()
       ctx.restore()
     })
     const plusX=avStartX+avR+logoSrcs.length*(avR*2-6*DPR*1.5)
@@ -340,12 +351,6 @@ export default function BentoFeatures() {
   return (
     <section style={{ padding:'5rem 24px', background:'#000' }}>
       <div style={{ maxWidth:1280, margin:'0 auto' }}>
-        <div style={{ textAlign:'center', marginBottom:48 }}>
-          <span style={{ fontFamily:'var(--font-montserrat)', fontSize:'.58rem', letterSpacing:'.35em', textTransform:'uppercase', color:'rgba(255,255,255,.5)', display:'block', marginBottom:16 }}>Why Choose Us</span>
-          <h2 style={{ fontFamily:'var(--font-cormorant)', fontSize:'clamp(2rem,4vw,3rem)', fontWeight:400, color:'#fff' }}>
-            Everything you need to <em style={{ fontStyle:'italic', color:'rgba(255,255,255,.6)' }}>grow</em>
-          </h2>
-        </div>
         <style>{`
           .bento-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
           @media(min-width:768px){ .bento-grid { grid-template-columns: 1fr 1fr; } }
