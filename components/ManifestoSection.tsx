@@ -1,39 +1,31 @@
 export default function ManifestoSection() {
   return (
-    <section className="py-12 sm:py-16 bg-black border-b border-white/10">
-      <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
-        <div className="max-w-5xl mx-auto">
-
-          <div className="relative">
-            {/* Opening quote */}
-            <span
-              className="text-white/20 font-serif select-none block leading-[0.4] md:leading-[0.2] m-0 p-0 md:pl-2 text-5xl sm:text-6xl md:text-7xl lg:text-[6rem]"
-              aria-hidden="true"
-            >
-              &ldquo;
-            </span>
-
-            {/* Main heading */}
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-white leading-snug sm:leading-tight mb-0 px-0 sm:px-4 md:px-8">
-              From presence to permanence, Enhanccee builds brands that define their era.
-            </h2>
-
-            {/* Closing quote */}
-            <span
-              className="text-white/20 font-serif select-none block leading-[0.2] text-right m-0 p-0 md:pr-4 text-5xl sm:text-6xl md:text-7xl lg:text-[6rem]"
-              aria-hidden="true"
-            >
-              &rdquo;
-            </span>
+    <section style={{ padding:'3rem 0', background:'#000', borderBottom:'1px solid rgba(255,255,255,0.1)' }}>
+      <div style={{ maxWidth:1280, margin:'0 auto', padding:'0 24px' }}>
+        <div style={{ display:'flex', flexDirection:'row', alignItems:'flex-start', gap:48 }}>
+          
+          {/* Left — Founders Message */}
+          <div style={{ flexShrink:0, paddingTop:32, minWidth:120 }}>
+            <div style={{ fontFamily:'var(--font-montserrat)', fontSize:'.7rem', fontWeight:700, color:'rgba(255,255,255,0.5)', letterSpacing:'.15em', textTransform:'uppercase', lineHeight:1.6 }}>
+              Founders<br />Message
+            </div>
           </div>
 
-            {/* Divider */}
-          <div className="h-px w-16 sm:w-20 mb-6 sm:mb-8 lg:ml-auto" style={{ backgroundColor: '#C9A84C' }} />
+          {/* Vertical Divider */}
+          <div style={{ width:1, background:'rgba(255,255,255,0.15)', alignSelf:'stretch', flexShrink:0 }} />
 
-          {/* Subtext */}
-          <p className="text-white/50 text-sm sm:text-base md:text-lg font-light tracking-wide text-left lg:text-right max-w-prose lg:max-w-none lg:ml-auto">
-          This is our commitment to every partner who walks through our doors.
-          </p>
+          {/* Right — Quote */}
+          <div style={{ flex:1 }}>
+            <span style={{ fontFamily:'var(--font-cormorant)', fontSize:'6rem', lineHeight:0.4, color:'rgba(255,255,255,0.2)', display:'block', marginBottom:8 }}>&ldquo;</span>
+            <h2 style={{ fontFamily:'var(--font-cormorant)', fontSize:'clamp(1.5rem,3vw,2.5rem)', fontWeight:700, color:'#fff', lineHeight:1.3, marginBottom:0 }}>
+              From presence to permanence, Enhanccee builds brands that define their era.
+            </h2>
+            <span style={{ fontFamily:'var(--font-cormorant)', fontSize:'6rem', lineHeight:0.2, color:'rgba(255,255,255,0.2)', display:'block', textAlign:'right', marginBottom:24 }}>&rdquo;</span>
+            <div style={{ height:1, width:64, background:'#C9A84C', marginLeft:'auto', marginBottom:20 }} />
+            <p style={{ color:'rgba(255,255,255,0.5)', fontSize:'1rem', fontWeight:300, letterSpacing:'0.05em', textAlign:'right' }}>
+              This is our commitment to every partner who walks through our doors.
+            </p>
+          </div>
 
         </div>
       </div>
