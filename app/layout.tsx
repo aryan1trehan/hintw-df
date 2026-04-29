@@ -1,26 +1,8 @@
 import type { Metadata, Viewport } from 'next'
-import { Cormorant_Garamond, Montserrat } from 'next/font/google'
 import './globals.css'
 import CinematicEffects from '@/components/CinematicEffects'
 import WaterRipple from '@/components/WaterRipple'
-
-/* ─── Cormorant Garamond — Headings (H1 / H2) ─── */
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-cormorant',
-  display: 'swap',
-})
-
-/* ─── Montserrat — Body / UI / Navigation ─── */
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
-  style: ['normal', 'italic'],
-  variable: '--font-montserrat',
-  display: 'swap',
-})
+import ClientLayout from './ClientLayout'
 
 export const metadata: Metadata = {
   title: 'Enhanccee - Elite Marketing & Growth Partner',
@@ -39,18 +21,24 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      className={`${cormorant.variable} ${montserrat.variable}`}
-      style={{ backgroundColor: '#000000' }}
-    >
-      <body
-        className="min-h-screen font-body"
-        style={{ backgroundColor: '#000000', color: '#ffffff' }}
-      >
+    <html lang="en" style={{ backgroundColor: '#000000' }}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet" />
+        <style>{`
+          :root {
+            --font-cormorant: 'Cormorant Garamond', serif;
+            --font-montserrat: 'Montserrat', sans-serif;
+          }
+        `}</style>
+      </head>
+      <body className="min-h-screen font-body" style={{ backgroundColor: '#000000', color: '#ffffff' }}>
         <CinematicEffects />
         <WaterRipple />
-        {children}
+        <ClientLayout>
+          {children}
+        </ClientLayout>
       </body>
     </html>
   )
