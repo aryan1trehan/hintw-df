@@ -4,12 +4,16 @@ import { useState } from 'react'
 import SplashScreen from '@/components/SplashScreen'
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
-  const [showSplash, setShowSplash] = useState(true)
+  const [done, setDone] = useState(false)
 
   return (
     <>
-      {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
-      <div style={{ opacity: showSplash ? 0 : 1, transition: 'opacity 0.6s ease' }}>
+      {!done && <SplashScreen onComplete={() => setDone(true)} />}
+      <div style={{
+        opacity: done ? 1 : 0,
+        visibility: done ? 'visible' : 'hidden',
+        transition: 'opacity 0.8s ease',
+      }}>
         {children}
       </div>
     </>
