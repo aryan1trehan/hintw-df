@@ -11,7 +11,6 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
   const cornersRef = useRef<HTMLDivElement[]>([])
 
   useEffect(() => {
-    // Lock scroll while splash is showing
     document.body.style.overflow = 'hidden'
 
     function delay(ms: number) { return new Promise(r => setTimeout(r, ms)) }
@@ -47,10 +46,9 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
       const tagline = taglineRef.current
       const sub = subtitleRef.current
       const corners = cornersRef.current
-
       if (!giantE || !brand || !line || !tagline || !sub) return
 
-      // Reset all to hidden
+      // Reset
       giantE.style.opacity = '0'
       brand.style.opacity = '0'
       brand.style.transform = 'scale(1)'
@@ -59,81 +57,81 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
       sub.style.opacity = '0'
       corners.forEach(c => { if (c) c.style.opacity = '0' })
 
-      await delay(300)
+      await delay(150)
 
-      // Giant E fades in
-      await tween(0, 1, 400, 'out3', v => { giantE.style.opacity = String(v) })
+      // Giant E fades in fast
+      await tween(0, 1, 220, 'out3', v => { giantE.style.opacity = String(v) })
 
-      // E scales down, brand name fades in
+      // E shrinks, brand fades in — faster and simultaneous
       await Promise.all([
-        tween(1, 0.08, 900, 'out5', v => {
-          giantE.style.opacity = String(v * 2 > 1 ? 1 : v * 2)
+        tween(1, 0, 550, 'out5', v => {
+          giantE.style.opacity = String(Math.min(v * 2, 1))
           giantE.style.transform = `scale(${1 + (1 - v) * 0.5})`
         }),
         (async () => {
-          await delay(350)
-          await tween(0, 1, 550, 'out4', v => {
+          await delay(180)
+          await tween(0, 1, 320, 'out4', v => {
             brand.style.opacity = String(v)
-            brand.style.transform = `scale(${1 + (1 - v) * 0.04})`
+            brand.style.transform = `scale(${1 + (1 - v) * 0.03})`
           })
         })(),
       ])
 
       giantE.style.opacity = '0'
-      await delay(120)
+      await delay(60)
 
-      // Line under brand name
+      // Line
       const brandRect = brand.getBoundingClientRect()
       line.style.left = brandRect.left + 'px'
       line.style.top = (brandRect.bottom + clamp(8, 1.5, 14)) + 'px'
-      await tween(0, brandRect.width, 500, 'out3', v => { line.style.width = v + 'px' })
+      await tween(0, brandRect.width, 300, 'out3', v => { line.style.width = v + 'px' })
 
-      // Tagline and subtitle — use opacity instead of color for crisp rendering
+      // Tagline + subtitle
       await Promise.all([
         (async () => {
           const lineRect = line.getBoundingClientRect()
           tagline.style.top = (lineRect.bottom + clamp(12, 2, 20)) + 'px'
           tagline.style.left = '50%'
           tagline.style.transform = 'translateX(-50%)'
-          await tween(0, 0.55, 500, 'out3', v => { tagline.style.opacity = String(v) })
+          await tween(0, 0.6, 300, 'out3', v => { tagline.style.opacity = String(v) })
         })(),
         (async () => {
-          await delay(200)
+          await delay(100)
           const brandRect2 = brand.getBoundingClientRect()
           sub.style.top = (brandRect2.top - clamp(22, 3.5, 36)) + 'px'
           sub.style.left = '50%'
           sub.style.transform = 'translateX(-50%)'
-          await tween(0, 0.25, 500, 'out3', v => { sub.style.opacity = String(v) })
+          await tween(0, 0.28, 300, 'out3', v => { sub.style.opacity = String(v) })
         })(),
       ])
 
-      await delay(200)
+      await delay(100)
 
-      // Corner accents
+      // Corners
       await Promise.all(corners.map((c, i) => (async () => {
         if (!c) return
-        await delay(i * 60)
-        await tween(0, 0.4, 400, 'out3', v => { c.style.opacity = String(v) })
+        await delay(i * 40)
+        await tween(0, 0.4, 250, 'out3', v => { c.style.opacity = String(v) })
       })()))
 
-      await delay(2200)
+      // Hold
+      await delay(1400)
 
       // Exit
       await Promise.all([
-        tween(1, 0, 500, 'in2', v => { brand.style.opacity = String(v) }),
-        tween(brandRect.width, 0, 400, 'in3', v => { line.style.width = v + 'px' }),
-        tween(0.4, 0, 400, 'in2', v => { corners.forEach(c => { if (c) c.style.opacity = String(v) }) }),
-        tween(0.55, 0, 350, 'in2', v => { tagline.style.opacity = String(v) }),
-        tween(0.25, 0, 350, 'in2', v => { sub.style.opacity = String(v) }),
+        tween(1, 0, 350, 'in2', v => { brand.style.opacity = String(v) }),
+        tween(brandRect.width, 0, 280, 'in3', v => { line.style.width = v + 'px' }),
+        tween(0.4, 0, 280, 'in2', v => { corners.forEach(c => { if (c) c.style.opacity = String(v) }) }),
+        tween(0.6, 0, 250, 'in2', v => { tagline.style.opacity = String(v) }),
+        tween(0.28, 0, 250, 'in2', v => { sub.style.opacity = String(v) }),
       ])
 
-      await delay(200)
+      await delay(150)
       document.body.style.overflow = ''
       onComplete()
     }
 
     run()
-
     return () => { document.body.style.overflow = '' }
   }, [onComplete])
 
@@ -145,8 +143,6 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
       overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center',
       fontFamily: "'Montserrat', sans-serif"
     }}>
-
-      {/* Giant E */}
       <div ref={giantERef} style={{
         position: 'absolute', fontSize: '100vw', fontWeight: 900, color: '#fff',
         lineHeight: 0.75, opacity: 0, transformOrigin: 'center center',
@@ -154,15 +150,12 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
         letterSpacing: '-0.05em', fontFamily: "'Montserrat', sans-serif"
       }}>E</div>
 
-      {/* Brand name */}
       <div ref={brandRef} style={{
-        position: 'absolute',
-        fontSize: 'clamp(44px, 7.5vw, 108px)',
+        position: 'absolute', fontSize: 'clamp(44px, 7.5vw, 108px)',
         fontWeight: 700, letterSpacing: '0.08em', color: '#fff',
         textTransform: 'uppercase', opacity: 0, zIndex: 3, whiteSpace: 'nowrap',
         fontFamily: "'Montserrat', sans-serif",
-        WebkitFontSmoothing: 'antialiased',
-        MozOsxFontSmoothing: 'grayscale',
+        WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale',
       }}>
         <span style={{
           fontFamily: "'Cormorant Garamond', serif", fontWeight: 300,
@@ -172,59 +165,31 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
         NHANCCEE
       </div>
 
-      {/* Line */}
-      <div ref={lineRef} style={{
-        position: 'fixed', height: 1, width: 0,
-        background: 'rgba(255,255,255,0.3)', zIndex: 3
-      }} />
+      <div ref={lineRef} style={{ position: 'fixed', height: 1, width: 0, background: 'rgba(255,255,255,0.3)', zIndex: 3 }} />
 
-      {/* Tagline — crisp white text with opacity control */}
       <div ref={taglineRef} style={{
-        position: 'fixed',
-        fontSize: 'clamp(9px, 0.9vw, 13px)',
-        fontWeight: 300,
-        letterSpacing: '0.4em',
-        textTransform: 'uppercase',
-        color: '#ffffff',
-        opacity: 0,
-        zIndex: 3,
-        whiteSpace: 'nowrap',
+        position: 'fixed', fontSize: 'clamp(9px, 0.9vw, 13px)', fontWeight: 300,
+        letterSpacing: '0.4em', textTransform: 'uppercase', color: '#ffffff',
+        opacity: 0, zIndex: 3, whiteSpace: 'nowrap',
         fontFamily: "'Montserrat', sans-serif",
-        WebkitFontSmoothing: 'antialiased',
-        MozOsxFontSmoothing: 'grayscale',
-      }}>
-        Elite Marketing &amp; Growth Partner
-      </div>
+        WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale',
+      }}>Elite Marketing &amp; Growth Partner</div>
 
-      {/* Subtitle */}
       <div ref={subtitleRef} style={{
-        position: 'fixed',
-        fontFamily: "'Cormorant Garamond', serif",
-        fontStyle: 'italic',
-        fontSize: 'clamp(12px, 1.2vw, 18px)',
-        fontWeight: 300,
-        letterSpacing: '0.1em',
-        color: '#ffffff',
-        opacity: 0,
-        zIndex: 3,
-        whiteSpace: 'nowrap',
+        position: 'fixed', fontFamily: "'Cormorant Garamond', serif",
+        fontStyle: 'italic', fontSize: 'clamp(12px, 1.2vw, 18px)', fontWeight: 300,
+        letterSpacing: '0.1em', color: '#ffffff', opacity: 0, zIndex: 3, whiteSpace: 'nowrap',
         WebkitFontSmoothing: 'antialiased',
-      }}>
-        Crafting brands that stand above the noise.
-      </div>
+      }}>Crafting brands that stand above the noise.</div>
 
-      {/* Corners */}
       {[
         { top: cPos, left: cPos },
         { top: cPos, right: cPos },
         { bottom: cPos, left: cPos },
         { bottom: cPos, right: cPos },
       ].map((pos, i) => (
-        <div
-          key={i}
-          ref={el => { if (el) cornersRef.current[i] = el }}
-          style={{ position: 'absolute', width: 'clamp(20px,3vw,40px)', height: 'clamp(20px,3vw,40px)', opacity: 0, zIndex: 4, ...pos }}
-        >
+        <div key={i} ref={el => { if (el) cornersRef.current[i] = el }}
+          style={{ position: 'absolute', width: 'clamp(20px,3vw,40px)', height: 'clamp(20px,3vw,40px)', opacity: 0, zIndex: 4, ...pos }}>
           <div style={{ position: 'absolute', width: '100%', height: 1, background: 'rgba(255,255,255,0.3)', top: 0, left: 0 }} />
           <div style={{ position: 'absolute', width: 1, height: '100%', background: 'rgba(255,255,255,0.3)', top: 0, left: i === 1 || i === 3 ? 'auto' : 0, right: i === 1 || i === 3 ? 0 : 'auto' }} />
         </div>
