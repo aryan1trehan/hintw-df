@@ -9,10 +9,12 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     const seen = sessionStorage.getItem('splashSeen')
-    if (!seen) {
-      setShowSplash(true)
-    } else {
+    if (seen) {
+      // Already seen — show content immediately, no splash
       setReady(true)
+    } else {
+      // First visit — show splash
+      setShowSplash(true)
     }
   }, [])
 
@@ -28,7 +30,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       <div style={{
         opacity: ready ? 1 : 0,
         visibility: ready ? 'visible' : 'hidden',
-        transition: 'opacity 0.8s ease',
+        transition: ready ? 'opacity 0.8s ease' : 'none',
       }}>
         {children}
       </div>
