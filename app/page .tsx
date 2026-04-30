@@ -1,10 +1,10 @@
 import Hero from '@/components/Hero'
 import MotionLogo from '@/components/MotionLogos'
-import ManifestoSection from '@/components/ManifestoSection' 
-import BentoFeatures from '@/components/BentoFeatures'
-import ServicesSection from '@/components/ServicesSection'
-import PhilosophySection from '@/components/PhilosophySection'
 import ResultsSection from '@/components/ResultsSection'
+import ServicesSection from '@/components/ServicesSection'
+import BentoFeatures from '@/components/BentoFeatures'
+import PhilosophySection from '@/components/PhilosophySection'
+import ManifestoSection from '@/components/ManifestoSection'
 import ContactSection from '@/components/ContactSection'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
@@ -15,11 +15,11 @@ export default function Home() {
       <Header />
       <Hero />
       <MotionLogo />
-      <ManifestoSection />
-      <BentoFeatures />
-      <ServicesSection />
-      <PhilosophySection />
       <ResultsSection />
+      <ServicesSection />
+      <BentoFeatures />
+      <PhilosophySection />
+      <ManifestoSection />
       <ContactSection />
       <Footer />
     </main>
