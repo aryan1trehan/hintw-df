@@ -200,7 +200,9 @@ export default function BrandingPage() {
         .br-stat-grid { display:grid; grid-template-columns:1fr; gap:1px; }
         @media(min-width:640px){ .br-stat-grid { grid-template-columns:repeat(3,1fr); } }
         .br-process-row { display:grid; grid-template-columns:1fr; gap:2px; }
-        @media(min-width:768px){ .br-process-row { grid-template-columns:1fr 1fr; min-height:500px; } }
+        @media(min-width:768px){ .br-process-row { grid-template-columns:1fr 1fr; } }
+        .br-process-row > div:first-child { min-height:320px; }
+        @media(min-width:768px){ .br-process-row { min-height:500px; } }
         .br-section { padding:8vh 6vw; }
         @media(min-width:768px){ .br-section { padding:14vh 8vw; } }
         .br-cta-pad { padding:3rem 1.5rem; }
@@ -390,7 +392,7 @@ export default function BrandingPage() {
                 { word:'Distinction', sub:'Over Trends' },
               ].map((s, i) => (
                 <FadeIn key={i} delay={i * 100}>
-                  <div style={{ background:'#ffffff', padding:'2.5rem 1.5rem', textAlign:'center', border:'1px solid rgba(0,0,0,.1)' }}>
+                  <div style={{ background:'#f5f5f5', padding:'2.5rem 1.5rem', textAlign:'center', border:'1px solid rgba(0,0,0,.1)' }}>
                     <span style={{ fontFamily:'var(--font-cormorant)', fontSize:'clamp(1.3rem,2vw,1.6rem)', fontWeight:400, color:'#000000', display:'block', marginBottom:'.5rem' }}>{s.word}</span>
                     <span style={{ fontSize:'.72rem', letterSpacing:'.15em', color:'rgba(0,0,0,.4)', textTransform:'uppercase', fontWeight:200 }}>{s.sub}</span>
                   </div>
@@ -465,7 +467,7 @@ export default function BrandingPage() {
               </h2>
               <p style={{ fontSize:'.9rem', lineHeight:1.9, color:'rgba(0,0,0,.5)', fontWeight:200 }}>When emotion, strategy, and design align, identity becomes powerful. A brand that people recognise instantly. Trust naturally. Remember permanently.</p>
             </div>
-            <div style={{ position:'relative', overflow:'hidden', minHeight:280 }}>
+            <div style={{ position:'relative', overflow:'hidden', minHeight:320 }}>
               <img src="https://images.unsplash.com/photo-1542744094-24638eff58bb?w=1200&q=80&fit=crop" alt="Elevated premium brand environment" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', filter:'brightness(.4) saturate(.6)', display:'block', position:'absolute', inset:0 }}/>
             </div>
           </div>
