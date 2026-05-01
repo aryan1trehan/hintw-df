@@ -32,8 +32,47 @@ function Divider({ mb = '6rem', isWhite = false }: { mb?: string; isWhite?: bool
   )
 }
 
+function MobileSlider({ items, renderItem }: { items: any[], renderItem: (item: any, i: number) => React.ReactNode }) {
+  const [idx, setIdx] = useState(0)
+  const touchStart = useRef(0)
+  const touchEnd = useRef(0)
+  function onTouchStart(e: React.TouchEvent) { touchStart.current = e.targetTouches[0].clientX }
+  function onTouchMove(e: React.TouchEvent) { touchEnd.current = e.targetTouches[0].clientX }
+  function onTouchEnd() {
+    const diff = touchStart.current - touchEnd.current
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) setIdx(i => Math.min(i + 1, items.length - 1))
+      else setIdx(i => Math.max(i - 1, 0))
+    }
+  }
+  return (
+    <div>
+      <div onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} style={{ overflow:'hidden' }}>
+        <div style={{ display:'flex', transition:'transform .4s cubic-bezier(.16,1,.3,1)', transform:`translateX(-${idx * 100}%)` }}>
+          {items.map((item, i) => (
+            <div key={i} style={{ minWidth:'100%' }}>{renderItem(item, i)}</div>
+          ))}
+        </div>
+      </div>
+      <div style={{ display:'flex', gap:6, marginTop:20, justifyContent:'center' }}>
+        {items.map((_, i) => (
+          <button key={i} onClick={() => setIdx(i)} style={{ height:2, width: i === idx ? 36 : 18, background: i === idx ? '#fff' : 'rgba(255,255,255,.25)', border:'none', cursor:'pointer', transition:'all .3s', padding:0 }}/>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function UIUXPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -67,6 +106,20 @@ export default function UIUXPage() {
     return () => { window.removeEventListener('resize', resize); cancelAnimationFrame(raf) }
   }, [])
 
+  const philItems = [
+    { n:'01', strong:'Design must reduce friction.', body:'Every interaction is engineered to simplify user decisions and remove unnecessary effort.' },
+    { n:'02', strong:'Improve navigation.', body:'Clear structures and intentional pathways help users move effortlessly through every touchpoint.' },
+    { n:'03', strong:'Transform complexity into simplicity.', body:'No decorative interfaces. No cluttered layouts. Only purposeful UI/UX systems built for clarity.' },
+    { n:'04', strong:'Built for growth.', body:'Intentional experience design that improves engagement, product performance, and long-term digital outcomes.' },
+  ]
+
+  const diffItems = [
+    { vs:'Designed to', h:'Perform Better', p:'Our approach prioritises clarity, usability, and product performance over complexity.' },
+    { vs:'Not Decorative', h:'Not Confusing', p:'No visual noise. No cluttered systems. Only intentional UX built for clarity and ease.' },
+    { vs:'Not Feature-Heavy', h:'Across Every Platform', p:'Every experience is engineered to improve engagement and user retention across all devices.' },
+    { vs:'Built for Ease', h:'Not attention-seeking', p:'Because great design does not demand attention. It makes everything easier.' },
+  ]
+
   return (
     <>
       <style>{`
@@ -99,36 +152,38 @@ export default function UIUXPage() {
         .ux-tag-item { font-size:.68rem; padding:.3rem .7rem; border:1px solid rgba(255,255,255,.12); color:rgba(255,255,255,.45); transition:all .3s; display:inline-block; }
         .ux-eco-card:hover .ux-tag-item { border-color:rgba(255,255,255,.3); color:rgba(255,255,255,.75); }
 
-        .ux-diff-item { padding:2rem; border-bottom:1px solid rgba(255,255,255,.06); border-right:1px solid rgba(255,255,255,.06); position:relative; overflow:hidden; }
+        .ux-diff-item { padding:2rem; border-bottom:1px solid rgba(255,255,255,.06); border-right:1px solid rgba(255,255,255,.06); }
         @media(min-width:768px){ .ux-diff-item { padding:4rem; } }
         .ux-diff-item:nth-child(even) { border-right:none; }
         .ux-diff-item:nth-last-child(-n+2) { border-bottom:none; }
-        .ux-diff-item::after { content:''; position:absolute; inset:0; background:rgba(255,255,255,.02); opacity:0; transition:opacity .4s; }
-        .ux-diff-item:hover::after { opacity:1; }
 
         .ux-orb { position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; z-index:1; }
         .ux-orb-1 { width:300px; height:300px; background:rgba(40,40,40,.5); top:-100px; left:-100px; animation:ux-orbFloat 12s ease-in-out infinite; }
         .ux-orb-2 { width:250px; height:250px; background:rgba(255,255,255,.04); bottom:-80px; right:-80px; animation:ux-orbFloat 12s ease-in-out infinite; animation-delay:-6s; }
-        @media(min-width:768px){
-          .ux-orb-1 { width:500px; height:500px; left:-150px; }
-          .ux-orb-2 { width:400px; height:400px; right:-100px; }
-        }
+        @media(min-width:768px){ .ux-orb-1{width:500px;height:500px;left:-150px;} .ux-orb-2{width:400px;height:400px;right:-100px;} }
 
-        /* Responsive grid helpers */
         .ux-2col { display:grid; grid-template-columns:1fr; gap:2px; }
         @media(min-width:640px){ .ux-2col { grid-template-columns:1fr 1fr; } }
+
+        /* 3-col banner: 2 cols on mobile, 3 on desktop */
         .ux-3col { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
         @media(min-width:768px){ .ux-3col { grid-template-columns:2fr 1fr 1fr; } }
+
         .ux-stat-grid { display:grid; grid-template-columns:1fr; gap:1px; }
         @media(min-width:640px){ .ux-stat-grid { grid-template-columns:repeat(3,1fr); } }
-        .ux-process-row { display:grid; grid-template-columns:1fr; gap:2px; min-height:auto; }
+
+        .ux-process-row { display:grid; grid-template-columns:1fr; gap:2px; }
         @media(min-width:768px){ .ux-process-row { grid-template-columns:1fr 1fr; min-height:500px; } }
+
         .ux-section { padding:8vh 6vw; }
         @media(min-width:768px){ .ux-section { padding:14vh 8vw; } }
-        .ux-phil-grid { display:grid; grid-template-columns:1fr; gap:3rem 5rem; }
-        @media(min-width:640px){ .ux-phil-grid { grid-template-columns:1fr 1fr; } }
+
         .ux-cta-pad { padding:3rem 1.5rem; }
         @media(min-width:768px){ .ux-cta-pad { padding:8rem 6rem; } }
+
+        .ux-phil-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem 5rem; }
+
+        .ux-diff-grid { display:grid; grid-template-columns:1fr 1fr; }
       `}</style>
 
       <Header />
@@ -149,7 +204,7 @@ export default function UIUXPage() {
               Designing Experiences<br />That Feel <em style={{ fontStyle:'normal', fontWeight:300 }}>Effortless</em><br />and Perform Exceptionally
             </h1>
             <p style={{ fontWeight:200, fontSize:'clamp(.85rem,1.5vw,1.1rem)', lineHeight:1.8, color:'rgba(255,255,255,.55)', maxWidth:900, margin:'0 auto 2.5rem', opacity:0, animation:'ux-fadeUp 1.1s ease .9s forwards' }}>
-              Digital products are not remembered for features. They are remembered for how they feel to use. At Enhanccee, we craft UX and UI systems that transform digital platforms into intuitive, high-performing experiences.
+              Digital products are not remembered for features. They are remembered for how they feel to use.
             </p>
             <div style={{ opacity:0, animation:'ux-fadeUp 1.1s ease 1.1s forwards' }}>
               <Link href="/contact" className="ux-btn-white"><span>Begin Your Experience</span></Link>
@@ -176,26 +231,34 @@ export default function UIUXPage() {
           </FadeIn>
           <FadeIn>
             <p style={{ fontSize:'clamp(.9rem,1.35vw,1.15rem)', lineHeight:1.95, color:'rgba(255,255,255,.58)', fontWeight:200, marginBottom:'3rem', maxWidth:1020 }}>
-              User experience is more than layout or aesthetics. It is the intersection of human behaviour, product strategy, and interface design. At Enhanccee, every UI/UX project begins with user research, behavioural insights, and product experience strategy before a single pixel is designed.
+              User experience is more than layout or aesthetics. It is the intersection of human behaviour, product strategy, and interface design.
             </p>
           </FadeIn>
-          <div className="ux-phil-grid">
-            {[
-              { n:'01', strong:'Design must reduce friction.', body:'Every interaction is engineered to simplify user decisions and remove unnecessary effort.' },
-              { n:'02', strong:'Improve navigation.', body:'Clear structures and intentional pathways help users move effortlessly through every touchpoint.' },
-              { n:'03', strong:'Transform complexity into simplicity.', body:'No decorative interfaces. No cluttered layouts. Only purposeful UI/UX systems built for clarity.' },
-              { n:'04', strong:'Built for growth.', body:'Intentional experience design that improves engagement, product performance, and long-term digital outcomes.' },
-            ].map((b, i) => (
-              <FadeIn key={i} delay={i * 100}>
-                <div>
-                  <div style={{ fontFamily:'var(--font-cormorant)', fontSize:'4rem', color:'rgba(255,255,255,.15)', lineHeight:1, marginBottom:'1rem', fontWeight:300 }}>{b.n}</div>
-                  <p style={{ fontSize:'clamp(.9rem,1.4vw,1.1rem)', lineHeight:1.9, color:'rgba(255,255,255,.55)', fontWeight:200 }}>
-                    <strong style={{ color:'#ffffff', fontWeight:400 }}>{b.strong}</strong> {b.body}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
+
+          {/* Mobile: slider, Desktop: grid */}
+          {isMobile ? (
+            <MobileSlider items={philItems} renderItem={(b, i) => (
+              <div style={{ padding:'2rem 0' }}>
+                <div style={{ fontFamily:'var(--font-cormorant)', fontSize:'4rem', color:'rgba(255,255,255,.15)', lineHeight:1, marginBottom:'1rem', fontWeight:300 }}>{b.n}</div>
+                <p style={{ fontSize:'clamp(.9rem,1.4vw,1.1rem)', lineHeight:1.9, color:'rgba(255,255,255,.55)', fontWeight:200 }}>
+                  <strong style={{ color:'#ffffff', fontWeight:400 }}>{b.strong}</strong> {b.body}
+                </p>
+              </div>
+            )}/>
+          ) : (
+            <div className="ux-phil-grid">
+              {philItems.map((b, i) => (
+                <FadeIn key={i} delay={i * 100}>
+                  <div>
+                    <div style={{ fontFamily:'var(--font-cormorant)', fontSize:'4rem', color:'rgba(255,255,255,.15)', lineHeight:1, marginBottom:'1rem', fontWeight:300 }}>{b.n}</div>
+                    <p style={{ fontSize:'clamp(.9rem,1.4vw,1.1rem)', lineHeight:1.9, color:'rgba(255,255,255,.55)', fontWeight:200 }}>
+                      <strong style={{ color:'#ffffff', fontWeight:400 }}>{b.strong}</strong> {b.body}
+                    </p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* ══ BANNER 2 SPLIT ══ */}
@@ -245,11 +308,6 @@ export default function UIUXPage() {
               </FadeIn>
             ))}
           </div>
-          <FadeIn delay={100}>
-            <p style={{ textAlign:'center', marginTop:'4rem', fontFamily:'var(--font-cormorant)', fontSize:'clamp(1.1rem,2.5vw,2rem)', fontStyle:'italic', color:'rgba(255,255,255,.5)', fontWeight:300 }}>
-              Every element designed to work together — <em style={{ color:'rgba(255,255,255,.8)', fontStyle:'normal' }}>functionally, visually, and emotionally.</em>
-            </p>
-          </FadeIn>
         </section>
 
         {/* ══ PROCESS ROW ══ */}
@@ -263,9 +321,6 @@ export default function UIUXPage() {
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(1.8rem,3.5vw,4rem)', lineHeight:1.15, color:'#ffffff', marginBottom:'1.5rem' }}>
                 Precision<br />at <em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>every interaction</em>
               </h2>
-              <p style={{ fontSize:'.9rem', lineHeight:1.9, color:'rgba(255,255,255,.5)', fontWeight:200, marginBottom:'1.5rem' }}>
-                Exceptional digital products are never accidental. They are the result of structured thinking, user research, and iterative design refinement.
-              </p>
               <div style={{ display:'grid', gap:'.8rem' }}>
                 {[
                   '01 Discovery — Understanding product goals and user behaviour through UX audits.',
@@ -300,7 +355,6 @@ export default function UIUXPage() {
             </FadeIn>
             <FadeIn delay={200}>
               <p style={{ fontSize:'clamp(.9rem,1.6vw,1.3rem)', lineHeight:1.9, color:'rgba(255,255,255,.5)', textAlign:'center', fontWeight:200, marginBottom:'4rem' }}>
-                The most successful digital products prioritise user experience design over visual noise.<br />
                 <strong style={{ color:'#ffffff' }}>Effortless experiences are always designed.</strong>
               </p>
             </FadeIn>
@@ -321,7 +375,7 @@ export default function UIUXPage() {
           </div>
         </section>
 
-        {/* ══ BANNER TRIO ══ */}
+        {/* ══ BANNER TRIO — fixed ══ */}
         <div className="ux-3col" style={{ background:'rgba(255,255,255,.08)' }}>
           {[
             { src:'https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80&fit=crop', cap:'Wireframing' },
@@ -347,36 +401,45 @@ export default function UIUXPage() {
               </h2>
             </FadeIn>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', maxWidth:1200, margin:'4rem auto 0' }}>
-            {[
-              { vs:'Designed to', h:'Perform Better', p:'Our approach prioritises clarity, usability, and product performance over complexity.' },
-              { vs:'Not Decorative', h:'Not Confusing', p:'No visual noise. No cluttered systems. Only intentional UX built for clarity and ease.' },
-              { vs:'Not Feature-Heavy', h:'Across Every Platform', p:'Every experience is engineered to improve engagement and user retention across all devices.' },
-              { vs:'Built for Ease', h:'Not attention-seeking', p:'Because great design does not demand attention. It makes everything easier.' },
-            ].map((d, i) => (
-              <FadeIn key={i} delay={i * 100}>
-                <div className="ux-diff-item">
-                  <div style={{ width:40, height:1, background:'rgba(255,255,255,.4)', marginBottom:'1.5rem', position:'relative' }}>
-                    <span style={{ position:'absolute', right:0, top:-3, width:7, height:7, borderRadius:'50%', background:'rgba(255,255,255,.6)', display:'block' }}/>
-                  </div>
-                  <span style={{ fontSize:'.68rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em', textTransform:'uppercase', marginBottom:'.8rem', display:'block' }}>{d.vs}</span>
-                  <h3 style={{ fontFamily:'var(--font-cormorant)', fontWeight:400, fontSize:'clamp(1.4rem,2.5vw,2.5rem)', color:'#ffffff', marginBottom:'.8rem', lineHeight:1.2 }}>{d.h}</h3>
-                  <p style={{ fontSize:'.85rem', lineHeight:1.85, color:'rgba(255,255,255,.5)', fontWeight:200 }}>{d.p}</p>
+
+          {/* Mobile: slider, Desktop: grid */}
+          {isMobile ? (
+            <MobileSlider items={diffItems} renderItem={(d, i) => (
+              <div style={{ padding:'2rem 0' }}>
+                <div style={{ width:40, height:1, background:'rgba(255,255,255,.4)', marginBottom:'1.5rem', position:'relative' }}>
+                  <span style={{ position:'absolute', right:0, top:-3, width:7, height:7, borderRadius:'50%', background:'rgba(255,255,255,.6)', display:'block' }}/>
                 </div>
-              </FadeIn>
-            ))}
-          </div>
+                <span style={{ fontSize:'.68rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em', textTransform:'uppercase', marginBottom:'.8rem', display:'block' }}>{d.vs}</span>
+                <h3 style={{ fontFamily:'var(--font-cormorant)', fontWeight:400, fontSize:'clamp(1.8rem,2.5vw,2.5rem)', color:'#ffffff', marginBottom:'.8rem', lineHeight:1.2 }}>{d.h}</h3>
+                <p style={{ fontSize:'.85rem', lineHeight:1.85, color:'rgba(255,255,255,.5)', fontWeight:200 }}>{d.p}</p>
+              </div>
+            )}/>
+          ) : (
+            <div className="ux-diff-grid" style={{ maxWidth:1200, margin:'4rem auto 0' }}>
+              {diffItems.map((d, i) => (
+                <FadeIn key={i} delay={i * 100}>
+                  <div className="ux-diff-item">
+                    <div style={{ width:40, height:1, background:'rgba(255,255,255,.4)', marginBottom:'1.5rem', position:'relative' }}>
+                      <span style={{ position:'absolute', right:0, top:-3, width:7, height:7, borderRadius:'50%', background:'rgba(255,255,255,.6)', display:'block' }}/>
+                    </div>
+                    <span style={{ fontSize:'.68rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em', textTransform:'uppercase', marginBottom:'.8rem', display:'block' }}>{d.vs}</span>
+                    <h3 style={{ fontFamily:'var(--font-cormorant)', fontWeight:400, fontSize:'clamp(1.4rem,2.5vw,2.5rem)', color:'#ffffff', marginBottom:'.8rem', lineHeight:1.2 }}>{d.h}</h3>
+                    <p style={{ fontSize:'.85rem', lineHeight:1.85, color:'rgba(255,255,255,.5)', fontWeight:200 }}>{d.p}</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* ══ CLOSING ROW ══ */}
         <FadeIn>
           <div className="ux-process-row" style={{ background:'rgba(0,0,0,.08)' }}>
             <div style={{ background:'#000000', padding:'3rem 2rem', display:'flex', flexDirection:'column', justifyContent:'center' }}>
-              <span style={{ fontSize:'.65rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'1.5rem' }}>Closing Section</span>
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(1.8rem,3.5vw,4rem)', lineHeight:1.15, color:'#ffffff', marginBottom:'1.5rem' }}>
                 Experiences that feel<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>inevitable</em>
               </h2>
-              <p style={{ fontSize:'.9rem', lineHeight:1.9, color:'rgba(255,255,255,.5)', fontWeight:200 }}>When design clarity, usability, and human psychology work together, digital experiences become natural. Users move without hesitation. The result is a product that feels intuitive from the first moment.</p>
+              <p style={{ fontSize:'.9rem', lineHeight:1.9, color:'rgba(255,255,255,.5)', fontWeight:200 }}>When design clarity, usability, and human psychology work together, digital experiences become natural.</p>
             </div>
             <div style={{ position:'relative', overflow:'hidden', minHeight:280 }}>
               <img src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=1200&q=80&fit=crop" alt="Premium digital interface" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', filter:'brightness(.4) saturate(.6)', display:'block', position:'absolute', inset:0 }}/>
@@ -411,7 +474,6 @@ export default function UIUXPage() {
             <div style={{ background:'rgba(10,10,10,.9)', border:'1px solid rgba(255,255,255,.1)', backdropFilter:'blur(20px)', textAlign:'center', position:'relative', overflow:'hidden', maxWidth:1100, margin:'0 auto' }} className="ux-cta-pad">
               <div style={{ position:'absolute', top:0, left:0, right:0, height:1, background:'linear-gradient(to right, transparent, rgba(255,255,255,.3), transparent)' }}/>
               <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,255,255,.03) 0%, transparent 60%)', pointerEvents:'none' }}/>
-              <span style={{ fontSize:'.68rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'1.5rem', display:'block', position:'relative', zIndex:1 }}>Your product experience is your competitive advantage</span>
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2rem,5vw,5.5rem)', color:'#ffffff', lineHeight:1.1, marginBottom:'1.5rem', position:'relative', zIndex:1 }}>
                 Your product experience is<br />your <em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>competitive advantage</em>
               </h2>
