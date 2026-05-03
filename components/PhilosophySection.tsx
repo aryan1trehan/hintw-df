@@ -22,16 +22,17 @@ export default function LongGameSection() {
                 Through strategy, design, and performance
               </p>
 
-              <p className="text-white/50 text-base leading-relaxed mb-10">
+              <p className="text-white/50 text-base leading-relaxed mb-8 sm:mb-10">
                 We craft brands with presence, precision, and authority. Our methodology combines
                 strategic foresight, behavioral psychology, and market dynamics to create brands
                 that appreciate in value over time. We&apos;re not here to make noise—we&apos;re
                 here to build empires.
               </p>
 
+              {/* Button — hidden on mobile, shown on desktop */}
               <a
                 href="/why-choose-us"
-                className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-black font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-white/90"
+                className="hidden lg:inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-white/90"
               >
                 Explore Our Methodology &#8594;
               </a>
@@ -78,6 +79,14 @@ export default function LongGameSection() {
                   <p className="text-white/50 text-sm leading-relaxed">Creating brands that compound in value over decades</p>
                 </div>
               </div>
+
+              {/* Button — shown on mobile only, after cards */}
+              <a
+                href="/why-choose-us"
+                className="lg:hidden inline-flex items-center justify-center gap-3 w-full px-6 py-3.5 bg-white text-black font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-white/90 mt-2"
+              >
+                Explore Our Methodology &#8594;
+              </a>
 
             </div>
           </div>
