@@ -163,11 +163,11 @@ export default function Hero() {
         <p className="text-base sm:text-lg md:text-xl text-white/60 max-w-3xl mx-auto mb-10 sm:mb-12 px-1">
           We engineer scalable growth for brands that demand authority, not just visibility.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center w-full max-w-md sm:max-w-none mx-auto">
-          <Link href="/clientele" className="bg-white text-black px-8 sm:px-10 py-3.5 sm:py-4 font-semibold text-sm uppercase tracking-[0.2em] transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 active:scale-95 text-center" style={{ backgroundColor:'#ffffff', color:'#000000' }}>
+        <div className="flex flex-row gap-2 sm:gap-4 justify-center items-center mx-auto">
+          <Link href="/clientele" className="bg-white text-black px-5 py-2.5 sm:px-10 sm:py-4 font-semibold text-xs sm:text-sm uppercase tracking-[0.15em] sm:tracking-[0.2em] transition-all duration-300 hover:scale-105 active:scale-95 text-center" style={{ backgroundColor:'#ffffff', color:'#000000' }}>
             View Portfolio
           </Link>
-          <Link href="/services" className="border-2 border-white text-white px-8 sm:px-10 py-3.5 sm:py-4 font-semibold text-sm uppercase tracking-[0.2em] transition-all duration-300 hover:bg-white hover:text-black hover:scale-105 hover:-translate-y-0.5 active:scale-95 text-center" style={{ backgroundColor:'#000000', color:'#ffffff', borderColor:'#ffffff' }}>
+          <Link href="/services" className="border border-white text-white px-5 py-2.5 sm:px-10 sm:py-4 font-semibold text-xs sm:text-sm uppercase tracking-[0.15em] sm:tracking-[0.2em] transition-all duration-300 hover:bg-white hover:text-black hover:scale-105 active:scale-95 text-center" style={{ backgroundColor:'#000000', color:'#ffffff', borderColor:'#ffffff' }}>
             Our Services
           </Link>
         </div>
