@@ -144,7 +144,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-[100dvh] min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-16 pt-28 pb-24 sm:pt-32 sm:pb-28 md:py-32" style={{ background: '#000' }}>
+    <section className="relative md:min-h-[100dvh] md:min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-16 pt-20 pb-16 sm:pt-24 sm:pb-20 md:py-32" style={{ background: '#000' }}>
 
       <canvas ref={canvasRef} style={{ position:'absolute', inset:0, width:'100%', height:'100%', opacity:0, transition:'opacity 1.5s ease' }} />
 
