@@ -321,10 +321,10 @@ a[style*="background"][style*="white"] * {
     min-height: unset !important;
   }
 
-  /* Reduce excessive vertical padding on mobile */
+  /* On mobile, make all cinematic sections visible immediately (no scroll trigger needed) */
   .cinematic-section {
-    opacity: 0;
-    transform: translateY(24px);
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 @keyframes clientele-scroll {
