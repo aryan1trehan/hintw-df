@@ -289,6 +289,14 @@ a[style*="background"][style*="white"] * {
   border-color: var(--gold);
 }
 
+/* Hide custom cursor on touch/mobile devices */
+@media (max-width: 1024px), (hover: none), (pointer: coarse) {
+  #cur,
+  #curR {
+    display: none !important;
+  }
+}
+
 /* Section reveal */
 .cinematic-section {
   opacity: 0;
@@ -303,7 +311,22 @@ a[style*="background"][style*="white"] * {
   transform: none;
 }
 
-/* Clientele carousel */
+/* ═══════════════════════════════════════════════
+   MOBILE RESPONSIVE SPACING FIXES
+   ═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Prevent sections from forcing full viewport height on mobile */
+  section[class*="min-h-screen"],
+  section[class*="min-h-[100dvh]"] {
+    min-height: unset !important;
+  }
+
+  /* Reduce excessive vertical padding on mobile */
+  .cinematic-section {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
 @keyframes clientele-scroll {
   0% {
     transform: translateX(0);
@@ -1123,5 +1146,3 @@ a[style*="background"][style*="white"] * {
   display: block;
   filter: brightness(.4) saturate(.5);
 }
-
-
