@@ -26,7 +26,7 @@ export default function StatementSection() {
   const displaySize = 'clamp(2.25rem, min(12vw, 11vh), 10rem)'
 
   return (
-    <section className="relative min-h-[100dvh] min-h-screen bg-black flex flex-col justify-between px-4 sm:px-6 md:px-12 lg:px-16 pt-8 pb-12 sm:pt-10 sm:pb-16 overflow-x-hidden">
+    <section className="relative md:min-h-[100dvh] md:min-h-screen bg-black flex flex-col justify-between px-4 sm:px-6 md:px-12 lg:px-16 pt-8 pb-12 sm:pt-10 sm:pb-16 overflow-x-hidden">
 
       {/* Main text */}
       <div className="flex-1 flex flex-col justify-center gap-2 sm:gap-0 max-w-[100vw]">
