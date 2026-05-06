@@ -11,18 +11,18 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
 
-      {/* ── MOBILE NAV: white bg, dark text, Enquiry button ── */}
-      <div className="md:hidden bg-white/95 backdrop-blur border-b border-[#ebebeb] flex items-center justify-between px-5 py-[14px]">
-        <Link href="/" className="font-serif text-[17px] text-[#111] tracking-[-0.01em]">enhanccee</Link>
+      {/* ── MOBILE NAV: black bg, white text ── */}
+      <div className="md:hidden bg-black border-b border-white/10 flex items-center justify-between px-5 py-[14px]">
+        <Link href="/" className="font-serif text-[17px] text-white tracking-[-0.01em]">enhanccee</Link>
         <div className="flex items-center gap-[14px]">
-          <Link href="/contact" className="text-[11px] font-semibold text-[#111] border-[1.5px] border-[#ddd] px-3 py-[5px] rounded-md">
+          <Link href="/contact" className="text-[11px] font-semibold text-white border-[1.5px] border-white/30 px-3 py-[5px] rounded-md">
             Enquiry
           </Link>
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
-            <div className="flex flex-col gap-[4px]">
-              <span className="block w-5 h-[1.5px] bg-[#111] rounded-sm" />
-              <span className="block w-5 h-[1.5px] bg-[#111] rounded-sm" />
-              <span className="block w-5 h-[1.5px] bg-[#111] rounded-sm" />
+            <div className="flex flex-col gap-[5px]">
+              <span className="block w-5 h-[1.5px] bg-white rounded-sm" />
+              <span className="block w-5 h-[1.5px] bg-white rounded-sm" />
+              <span className="block w-5 h-[1.5px] bg-white rounded-sm" />
             </div>
           </button>
         </div>
@@ -30,7 +30,7 @@ export default function Header() {
 
       {/* Mobile dropdown menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-b border-[#ebebeb] px-5 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-black border-b border-white/10 px-5 py-4 flex flex-col gap-4">
           {[
             { label: 'Home', href: '/' },
             { label: 'Clientele', href: '/clientele' },
@@ -40,7 +40,7 @@ export default function Header() {
             { label: 'Contact Us', href: '/contact' },
           ].map((item) => (
             <Link key={item.label} href={item.href} onClick={() => setIsMenuOpen(false)}
-              className="text-[13px] font-medium text-[#111] hover:text-[#555] transition-colors">
+              className="text-[13px] font-medium text-white/70 hover:text-white transition-colors">
               {item.label}
             </Link>
           ))}
