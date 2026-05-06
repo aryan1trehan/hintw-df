@@ -32,7 +32,6 @@ export default function ResultsSection() {
         <div className="grid grid-cols-3 border border-[#222] rounded-[10px] overflow-hidden">
           {results.map((r, i) => (
             <div key={i} className={`flex flex-col items-center justify-center py-[18px] px-[10px] text-center ${i < 2 ? 'border-r border-[#222]' : ''}`}>
-              <div className="text-[10px] text-[#444] mb-[6px]">{r.icon}</div>
               <div className="font-serif text-[26px] text-white leading-none mb-1">{r.number}</div>
               <div className="text-[9px] uppercase tracking-[0.08em] text-[#555] font-semibold leading-tight">{r.label}</div>
             </div>
