@@ -101,10 +101,7 @@ export default function Hero() {
           </Link>
         </div>
       </div>
-      {/* Hero image placeholder */}
-      <div className="px-5 pb-8">
-        <div className="w-full rounded-[10px] bg-white/5 border border-white/10 overflow-hidden" style={{ aspectRatio: '16/9' }} />
-      </div>
+
     </section>
 
     {/* ── DESKTOP HERO ── */}
