@@ -46,16 +46,16 @@ export default function CinematicEffects() {
     // Scroll reveal — desktop only (mobile gets instant visibility)
     const isMobile = window.innerWidth < 768 || window.matchMedia('(hover: none)').matches
     const sections = Array.from(document.querySelectorAll<HTMLElement>('main section'))
+    let io: IntersectionObserver | null = null
 
     if (isMobile) {
-      // On mobile: skip animation entirely, all sections visible immediately
       sections.forEach((sec) => {
         sec.style.opacity = '1'
         sec.style.transform = 'none'
       })
     } else {
       sections.forEach((sec) => sec.classList.add('cinematic-section'))
-      const io = new IntersectionObserver(
+      io = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
@@ -65,7 +65,7 @@ export default function CinematicEffects() {
         },
         { threshold: [0.25, 0.5] }
       )
-      sections.forEach((sec) => io.observe(sec))
+      sections.forEach((sec) => io!.observe(sec))
     }
 
     // Smooth scrolling for anchor links
@@ -89,7 +89,7 @@ export default function CinematicEffects() {
     return () => {
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('click', handleAnchorClick)
-      io.disconnect()
+      if (io) io.disconnect()
     }
   }, [])
 
