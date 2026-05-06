@@ -93,7 +93,7 @@ export default function Hero() {
           We engineer scalable growth for brands that demand authority, not just visibility.
         </p>
         <div className="flex gap-[10px] mt-5">
-          <Link href="/clientele" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-white text-black border-[1.5px] border-white">
+          <Link href="/clientele" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-white border-[1.5px] border-white" style={{color:"#000000"}}>
             View Portfolio →
           </Link>
           <Link href="/services" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-transparent text-white border-[1.5px] border-white/40">
