@@ -321,10 +321,14 @@ a[style*="background"][style*="white"] * {
     min-height: unset !important;
   }
 
-  /* On mobile, make all cinematic sections visible immediately (no scroll trigger needed) */
-  .cinematic-section {
+  /* On mobile, force ALL animated elements visible immediately */
+  .cinematic-section,
+  [class$="-hidden"],
+  [class$="-visible"],
+  .result-header-hidden, .result-card-hidden, .result-footer-hidden {
     opacity: 1 !important;
     transform: none !important;
+    transition: none !important;
   }
 }
 @keyframes clientele-scroll {
