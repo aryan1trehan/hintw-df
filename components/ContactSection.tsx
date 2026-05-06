@@ -18,32 +18,6 @@ export default function StatementSection() {
 
   return (
     <section>
-      {/* ── MOBILE: dark bg, centered CTA, social icons with labels ── */}
-      <div className="md:hidden bg-[#111] px-5 py-10 text-center">
-        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-white/40 mb-[10px]">Project in Mind?</p>
-        <h2 className="font-serif text-[22px] leading-[1.2] text-white font-normal mb-6">
-          Let&apos;s build something extraordinary together.
-        </h2>
-        <Link href="/contact" className="block w-full py-4 rounded-lg text-[13px] font-semibold bg-white text-[#111] mb-7">
-          Work With Us →
-        </Link>
-        {/* Social icons with labels */}
-        <div className="grid grid-cols-2 gap-3">
-          {[
-            { label: 'Facebook', icon: 'f' },
-            { label: 'Twitter', icon: '𝕏' },
-            { label: 'Dribbble', icon: '◉' },
-            { label: 'Instagram', icon: '◎' },
-          ].map((s) => (
-            <a key={s.label} href="#"
-              className="flex items-center justify-center gap-2 py-3 rounded-lg bg-[#1a1a1a] border border-[#2a2a2a] text-white/60 hover:text-white transition-colors">
-              <span className="text-[13px] font-bold">{s.icon}</span>
-              <span className="text-[11px] font-medium">{s.label}</span>
-            </a>
-          ))}
-        </div>
-      </div>
-
       {/* ── DESKTOP: animated "Design That Flow You" ── */}
       <div className="hidden md:flex relative min-h-[100dvh] flex-col justify-between bg-black px-12 lg:px-16 pt-10 pb-16 overflow-x-hidden">
         <div className="flex-1 flex flex-col justify-center gap-0 max-w-[100vw]">
