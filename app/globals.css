@@ -21,10 +21,11 @@ html, body {
   scroll-behavior: smooth !important;
 }
 
-/* Force all sections to have black background and white text */
-section {
-  background-color: #000000 !important;
-  color: #ffffff !important;
+/* Sections default to black on desktop, but mobile sections handle their own bg */
+@media (min-width: 768px) {
+  section {
+    background-color: #000000;
+  }
 }
 
 /* Force all text to be white by default */
@@ -53,10 +54,7 @@ div[style*="background"][style*="white"] * {
   color: #000000 !important;
 }
 
-/* Override for specific cases where we want white text on black */
-.text-black, .text-black\/\d+ {
-  color: #ffffff !important;
-}
+/* .text-black intentionally left to Tailwind default (black) */
 
 /* Force white text on black background buttons and links with borders */
 a.bg-black.border,
@@ -289,10 +287,18 @@ a[style*="background"][style*="white"] * {
   border-color: var(--gold);
 }
 
-/* Ensure Tailwind hidden class works on mobile despite !important overrides */
+/* Ensure Tailwind responsive display classes work correctly */
 @media (max-width: 767px) {
+  .md\:block { display: none !important; }
+  .md\:flex { display: none !important; }
+  .md\:grid { display: none !important; }
   .md\:hidden { display: block !important; }
-  .hidden.md\:block, section.hidden { display: none !important; }
+}
+@media (min-width: 768px) {
+  .md\:block { display: block !important; }
+  .md\:flex { display: flex !important; }
+  .md\:grid { display: grid !important; }
+  .md\:hidden { display: none !important; }
 }
 
 /* Hide custom cursor on touch/mobile devices */
