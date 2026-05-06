@@ -1,47 +1,27 @@
 'use client'
-import { useEffect, useRef } from 'react'
-
-// Keep original desktop canvas cards intact — just add mobile pillars section
-function CanvasCard({ id, title, subtitle, initFn }: { id: string; title: string; subtitle: string; initFn: (canvas: HTMLCanvasElement) => () => void }) {
-  const ref = useRef<HTMLCanvasElement>(null)
-  useEffect(() => {
-    if (!ref.current) return
-    const cleanup = initFn(ref.current)
-    return cleanup
-  }, [initFn])
-  return (
-    <div className="relative overflow-hidden border border-white/10 bg-black group hover:border-white/30 transition-colors duration-300">
-      <canvas ref={ref} id={id} className="w-full h-full absolute inset-0" />
-      <div className="relative z-10 p-6 md:p-8 h-full flex flex-col justify-end">
-        <h3 className="text-white font-semibold text-base md:text-lg mb-1">{title}</h3>
-        <p className="text-white/50 text-sm">{subtitle}</p>
-      </div>
-    </div>
-  )
-}
 
 export default function BentoFeatures() {
   return (
     <section>
-      {/* ── MOBILE: light grey bg, 2x2 pillar grid, exactly like wireframe ── */}
-      <div className="md:hidden bg-[#f5f5f5] px-5 py-8">
-        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#888] mb-4">Why Choose Us</p>
+      {/* ── MOBILE: dark bg, 2x2 grid with VISIBLE text ── */}
+      <div className="md:hidden bg-[#111] px-5 py-8">
+        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-white/40 mb-4">Why Choose Us</p>
         <div className="grid grid-cols-2 gap-[10px]">
           {[
-            { title: 'Real data, not guesswork', desc: 'Every campaign is optimised' },
-            { title: 'Unveiled Metrics', desc: 'Total visibility into your investments' },
-            { title: 'Top industry experience', desc: 'Every campaign is optimised' },
-            { title: 'Client-first approach', desc: 'Your goals become our KPIs' },
+            { title: 'Real data, not guesswork', desc: 'Every campaign is data-driven and optimised for results' },
+            { title: 'Unveiled Metrics', desc: 'Total visibility into your marketing investments' },
+            { title: 'Top industry experience', desc: '15+ years of proven expertise across industries' },
+            { title: 'Client-first approach', desc: 'Your goals become our KPIs — always' },
           ].map((p, i) => (
-            <div key={i} className="bg-[#f5f5f5] border border-[#ebebeb] rounded-[10px] px-3 py-[14px]">
-              <h3 className="text-[11px] font-bold text-[#111] mb-1 leading-[1.3]">{p.title}</h3>
-              <p className="text-[10px] text-[#888] leading-[1.5]">{p.desc}</p>
+            <div key={i} className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-[10px] px-3 py-4">
+              <h3 className="text-[12px] font-bold text-white mb-[6px] leading-[1.3]">{p.title}</h3>
+              <p className="text-[10px] text-white/50 leading-[1.5]">{p.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* ── DESKTOP: original bento/canvas layout ── */}
+      {/* ── DESKTOP: original layout ── */}
       <div className="hidden md:block py-20 md:py-24 bg-black">
         <div className="container mx-auto px-12 lg:px-16">
           <div className="text-center mb-14">
@@ -55,7 +35,7 @@ export default function BentoFeatures() {
               { title: 'Top industry experience', subtitle: '15+ years of proven expertise across industries' },
               { title: 'Client-first approach', subtitle: 'Your goals become our KPIs — always' },
             ].map((item, i) => (
-              <div key={i} className="bg-black border-0 p-8 md:p-10 flex flex-col justify-between group hover:bg-white transition-all duration-300">
+              <div key={i} className="bg-black p-8 md:p-10 flex flex-col justify-between group hover:bg-white transition-all duration-300">
                 <div className="w-8 h-8 rounded-full border border-white/20 group-hover:border-black/20 mb-6 flex items-center justify-center">
                   <span className="text-white/40 group-hover:text-black/40 text-xs font-bold">{i + 1}</span>
                 </div>
