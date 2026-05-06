@@ -26,7 +26,7 @@ export default function LongGameSection() {
             </div>
           ))}
         </div>
-        <Link href="/why-choose-us" className="block w-full text-center py-3 rounded-lg text-[12px] font-semibold bg-white text-black border-[1.5px] border-white">
+        <Link href="/why-choose-us" className="block w-full text-center py-3 rounded-lg text-[12px] font-semibold bg-transparent text-white border-[1.5px] border-white/40">
           Explore Our Methodology →
         </Link>
       </div>
