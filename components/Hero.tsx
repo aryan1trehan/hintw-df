@@ -3,9 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
-const PALETTES: Record<string, string[]> = {
-  mono: ['#cccccc', '#888888', '#ffffff', '#555555'],
-}
+const PALETTES: Record<string, string[]> = { mono: ['#cccccc', '#888888', '#ffffff', '#555555'] }
 const rng = (a: number, b: number) => a + Math.random() * (b - a)
 const NUM_RIBBONS = 6
 const ribbons = Array.from({ length: NUM_RIBBONS }, (_, i) => ({
@@ -82,35 +80,34 @@ export default function Hero() {
   }, [])
 
   return (<>
-    {/* ── MOBILE HERO: white bg, dark text, exactly like wireframe ── */}
-    <section className="md:hidden bg-white pt-[72px]">
-      {/* Text block */}
+    {/* ── MOBILE HERO: black bg, white text ── */}
+    <section className="md:hidden bg-black pt-[72px]">
       <div className="px-5 pt-8 pb-6">
-        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#888] mb-[10px]">
+        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-white/40 mb-[10px]">
           Elite Marketing &amp; Growth Partner
         </p>
-        <h1 className="font-serif text-[30px] leading-[1.1] tracking-[-0.02em] text-[#111] font-normal mb-[14px]">
+        <h1 className="font-serif text-[30px] leading-[1.1] tracking-[-0.02em] text-white font-normal mb-[14px]">
           Crafting brands that stand above the noise.
         </h1>
-        <p className="text-[13px] leading-[1.65] text-[#555] mb-0">
+        <p className="text-[13px] leading-[1.65] text-white/60 mb-0">
           We engineer scalable growth for brands that demand authority, not just visibility.
         </p>
         <div className="flex gap-[10px] mt-5">
-          <Link href="/clientele" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-[#111] text-white border-[1.5px] border-[#111]">
+          <Link href="/clientele" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-white text-[#111] border-[1.5px] border-white">
             View Portfolio →
           </Link>
-          <Link href="/services" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-transparent text-[#111] border-[1.5px] border-[#111]">
+          <Link href="/services" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-transparent text-white border-[1.5px] border-white/40">
             Our Services
           </Link>
         </div>
       </div>
-      {/* Hero image placeholder — 16:9 grey box */}
+      {/* Hero image placeholder */}
       <div className="px-5 pb-8">
-        <div className="w-full rounded-[10px] bg-[#ebebeb] overflow-hidden" style={{ aspectRatio: '16/9' }} />
+        <div className="w-full rounded-[10px] bg-white/5 border border-white/10 overflow-hidden" style={{ aspectRatio: '16/9' }} />
       </div>
     </section>
 
-    {/* ── DESKTOP HERO: black bg, canvas animation ── */}
+    {/* ── DESKTOP HERO ── */}
     <section className="hidden md:flex relative min-h-[100dvh] items-center justify-center px-12 lg:px-16 py-32" style={{ background: '#000' }}>
       <canvas ref={canvasRef} style={{ position:'absolute', inset:0, width:'100%', height:'100%', opacity:0, transition:'opacity 1.5s ease' }} />
       <div style={{ position:'absolute', inset:0, backgroundImage:`url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`, backgroundSize:'200px', opacity:0.5, pointerEvents:'none' }} />
