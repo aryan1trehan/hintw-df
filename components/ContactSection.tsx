@@ -18,18 +18,28 @@ export default function StatementSection() {
 
   return (
     <section>
-      {/* ── MOBILE: dark bg, centered CTA, social dots, exactly like wireframe ── */}
-      <div className="md:hidden bg-[#111] px-5 py-8 text-center">
-        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#555] mb-[10px]">Project in Mind?</p>
-        <h2 className="font-serif text-[22px] leading-[1.2] text-white font-normal mb-[10px]">
+      {/* ── MOBILE: dark bg, centered CTA, social icons with labels ── */}
+      <div className="md:hidden bg-[#111] px-5 py-10 text-center">
+        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-white/40 mb-[10px]">Project in Mind?</p>
+        <h2 className="font-serif text-[22px] leading-[1.2] text-white font-normal mb-6">
           Let&apos;s build something extraordinary together.
         </h2>
-        <button className="w-full py-3 mt-2 rounded-lg text-[12px] font-semibold bg-white text-[#111] border-[1.5px] border-white mb-5">
-          <Link href="/contact">Work With Us →</Link>
-        </button>
-        <div className="flex justify-center gap-4">
-          {['#','#','#','#'].map((href, i) => (
-            <a key={i} href={href} className="w-[30px] h-[30px] rounded-full bg-[#1c1c1c] border border-[#2a2a2a]" />
+        <Link href="/contact" className="block w-full py-4 rounded-lg text-[13px] font-semibold bg-white text-[#111] mb-7">
+          Work With Us →
+        </Link>
+        {/* Social icons with labels */}
+        <div className="grid grid-cols-2 gap-3">
+          {[
+            { label: 'Facebook', icon: 'f' },
+            { label: 'Twitter', icon: '𝕏' },
+            { label: 'Dribbble', icon: '◉' },
+            { label: 'Instagram', icon: '◎' },
+          ].map((s) => (
+            <a key={s.label} href="#"
+              className="flex items-center justify-center gap-2 py-3 rounded-lg bg-[#1a1a1a] border border-[#2a2a2a] text-white/60 hover:text-white transition-colors">
+              <span className="text-[13px] font-bold">{s.icon}</span>
+              <span className="text-[11px] font-medium">{s.label}</span>
+            </a>
           ))}
         </div>
       </div>
