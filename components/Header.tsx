@@ -9,28 +9,30 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
+    <header style={{ position:'fixed', top:0, left:0, right:0, zIndex:50 }}>
 
-      {/* ── MOBILE NAV: black bg, white text ── */}
-      <div className="md:hidden bg-black border-b border-white/10 flex items-center justify-between px-5 py-[14px]">
-        <Link href="/" className="font-serif text-[17px] text-white tracking-[-0.01em]">enhanccee</Link>
-        <div className="flex items-center gap-[14px]">
-          <Link href="/contact" className="text-[11px] font-semibold text-white border-[1.5px] border-white/30 px-3 py-[5px] rounded-md">
+      {/* ── MOBILE NAV ── */}
+      <div className="md:hidden" style={{ background:'#000', borderBottom:'1px solid rgba(255,255,255,0.1)', display:'flex', alignItems:'center', justifyContent:'space-between', padding:'14px 20px' }}>
+        {/* Logo */}
+        <Link href="/" style={{ fontFamily:'var(--font-cormorant), Georgia, serif', fontSize:17, color:'#fff', textDecoration:'none', letterSpacing:'-0.01em' }}>
+          enhanccee
+        </Link>
+        {/* Right side: Enquiry + Hamburger */}
+        <div style={{ display:'flex', alignItems:'center', gap:14 }}>
+          <Link href="/contact" style={{ fontSize:11, fontWeight:600, color:'#fff', border:'1.5px solid rgba(255,255,255,0.3)', padding:'5px 12px', borderRadius:6, textDecoration:'none' }}>
             Enquiry
           </Link>
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
-            <div className="flex flex-col gap-[5px]">
-              <span className="block w-5 h-[1.5px] bg-white rounded-sm" />
-              <span className="block w-5 h-[1.5px] bg-white rounded-sm" />
-              <span className="block w-5 h-[1.5px] bg-white rounded-sm" />
-            </div>
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu" style={{ background:'none', border:'none', padding:0, cursor:'pointer', display:'flex', flexDirection:'column', gap:5 }}>
+            <span style={{ display:'block', width:20, height:1.5, background:'#fff', borderRadius:2 }} />
+            <span style={{ display:'block', width:20, height:1.5, background:'#fff', borderRadius:2 }} />
+            <span style={{ display:'block', width:20, height:1.5, background:'#fff', borderRadius:2 }} />
           </button>
         </div>
       </div>
 
-      {/* Mobile dropdown menu */}
+      {/* Mobile dropdown */}
       {isMenuOpen && (
-        <div className="md:hidden bg-black border-b border-white/10 px-5 py-4 flex flex-col gap-4">
+        <div className="md:hidden" style={{ background:'#000', borderBottom:'1px solid rgba(255,255,255,0.1)', padding:'16px 20px', display:'flex', flexDirection:'column', gap:16 }}>
           {[
             { label: 'Home', href: '/' },
             { label: 'Clientele', href: '/clientele' },
@@ -40,39 +42,30 @@ export default function Header() {
             { label: 'Contact Us', href: '/contact' },
           ].map((item) => (
             <Link key={item.label} href={item.href} onClick={() => setIsMenuOpen(false)}
-              className="text-[13px] font-medium text-white/70 hover:text-white transition-colors">
+              style={{ color:'rgba(255,255,255,0.7)', fontSize:13, fontWeight:500, textDecoration:'none', display:'block' }}>
               {item.label}
             </Link>
           ))}
         </div>
       )}
 
-      {/* ── DESKTOP NAV: black bg ── */}
-      <nav className="hidden md:block w-full max-w-[1920px] mx-auto bg-black border-b border-white/15 px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex-shrink-0">
-            <Link href="/" className="block hover:opacity-70 transition-opacity">
-              <Image src={logoImage} alt="Enhanccee Logo" width={150} height={40} className="h-8 lg:h-10 w-auto" priority />
-            </Link>
-          </div>
-          <div className="flex items-center justify-center space-x-6 lg:space-x-10 xl:space-x-12 flex-1">
-            {[
-              { label: 'HOME', href: '/' },
-              { label: 'CLIENTELE', href: '/clientele' },
-              { label: 'OUR SERVICES', href: '/services' },
-              { label: 'WHY CHOOSE US?', href: '/why-choose-us' },
-              { label: 'BLOG', href: '/blog' },
-            ].map((item) => (
-              <Link key={item.label} href={item.href} className="text-xs lg:text-sm text-white hover:text-white/70 transition-colors whitespace-nowrap uppercase tracking-wider">
-                {item.label}
+      {/* ── DESKTOP NAV ── */}
+      <nav className="hidden md:block" style={{ background:'#000', borderBottom:'1px solid rgba(255,255,255,0.15)', padding:'16px 24px' }}>
+        <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', maxWidth:1920, margin:'0 auto' }}>
+          <Link href="/" style={{ display:'block' }}>
+            <Image src={logoImage} alt="Enhanccee Logo" width={150} height={40} style={{ height:40, width:'auto' }} priority />
+          </Link>
+          <div style={{ display:'flex', alignItems:'center', gap:40 }}>
+            {['HOME','CLIENTELE','OUR SERVICES','WHY CHOOSE US?','BLOG'].map((label, i) => (
+              <Link key={label} href={['/','/clientele','/services','/why-choose-us','/blog'][i]}
+                style={{ fontSize:12, color:'#fff', textDecoration:'none', letterSpacing:'0.1em', textTransform:'uppercase', whiteSpace:'nowrap' }}>
+                {label}
               </Link>
             ))}
           </div>
-          <div className="flex items-center flex-shrink-0">
-            <Link href="/contact" className="bg-white text-black px-6 py-2 font-semibold text-xs lg:text-sm hover:bg-gray-200 transition-all duration-300 hover:scale-105 uppercase tracking-wider whitespace-nowrap">
-              ENQUIRY
-            </Link>
-          </div>
+          <Link href="/contact" style={{ background:'#fff', color:'#000', padding:'8px 24px', fontSize:12, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', textDecoration:'none', whiteSpace:'nowrap' }}>
+            ENQUIRY
+          </Link>
         </div>
       </nav>
 
