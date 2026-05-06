@@ -20,27 +20,29 @@ const icons = [
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="bg-black border-t border-white/10">
-
-      {/* ── MOBILE ── */}
-      <div className="md:hidden px-5 py-10">
-        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 mb-2">Our Services</p>
-        <h2 className="font-serif text-[1.4rem] text-white font-light mb-5 leading-snug">Focused. Strategic. Built for Scale.</h2>
-        <div className="flex flex-col divide-y divide-white/10">
+    <section>
+      {/* ── MOBILE: white bg, list rows with dividers, exactly like wireframe ── */}
+      <div className="md:hidden bg-white px-5 py-8">
+        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#888] mb-[10px]">Our Services</p>
+        <h2 className="font-serif text-[22px] leading-[1.2] tracking-[-0.01em] text-[#111] font-normal mb-4">
+          Focused. Strategic. Built for Scale.
+        </h2>
+        <div className="flex flex-col border-t border-[#ebebeb]">
           {services.map((s, i) => (
-            <Link key={i} href={s.link} className="flex items-center justify-between py-4 gap-3 group active:opacity-70">
-              <div className="flex flex-col gap-1">
-                <span className="text-[13px] font-semibold text-white">{s.title}</span>
-                <span className="text-[11px] text-white/40 leading-snug">{s.description}</span>
+            <Link key={i} href={s.link}
+              className="flex items-center justify-between py-[14px] border-b border-[#ebebeb] gap-3 group">
+              <div className="flex flex-col gap-[3px] flex-1">
+                <span className="text-[13px] font-semibold text-[#111]">{s.title}</span>
+                <span className="text-[11px] text-[#888] leading-snug">{s.description}</span>
               </div>
-              <span className="text-white/30 text-base shrink-0 group-hover:text-white transition-colors">→</span>
+              <span className="text-[12px] text-[#bbb] shrink-0 group-hover:text-[#111] transition-colors">→</span>
             </Link>
           ))}
         </div>
       </div>
 
-      {/* ── DESKTOP ── */}
-      <div className="hidden md:block py-20 md:py-24">
+      {/* ── DESKTOP: original grid layout ── */}
+      <div className="hidden md:block py-20 md:py-24 bg-black">
         <div className="container mx-auto px-12 lg:px-16">
           <div className="text-center mb-14 md:mb-16">
             <span className="text-white/50 text-xs font-semibold uppercase tracking-[0.3em] mb-4 block">Our Services</span>
@@ -59,7 +61,6 @@ export default function ServicesSection() {
           </div>
         </div>
       </div>
-
     </section>
   )
 }
