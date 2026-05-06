@@ -35,36 +35,41 @@ export default function Hero() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
     function resize() { if (!canvas) return; canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight }
-    resize(); window.addEventListener('resize', resize)
-    const start = performance.now(); let raf: number
+    resize()
+    window.addEventListener('resize', resize)
+    const start = performance.now()
+    let raf: number
     function frame(now: number) {
       if (!ctx || !canvas) return
-      const t = (now - start) / 1000, W = canvas.width, H = canvas.height, pal = PALETTES.mono
+      const t = (now - start) / 1000
+      const W = canvas.width, H = canvas.height
+      const pal = PALETTES.mono
       ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#000000'; ctx.fillRect(0, 0, W, H)
       ctx.save(); ctx.globalCompositeOperation = 'lighter'
       for (const r of ribbons) {
-        const col = pal[r.palIdx], segs = r.segments
-        const topPts: [number, number][] = [], botPts: [number, number][] = []
+        const col = pal[r.palIdx]; const segs = r.segments
+        const topPts: [number, number][] = []; const botPts: [number, number][] = []
         for (let s = 0; s <= segs; s++) {
-          const nx = s / segs, cx = nx * W
+          const nx = s / segs; const cx = nx * W
           const cy = liquidY(r, nx / cfg.scale, t) * H
           const hw = liquidW(r, nx / cfg.scale, t) * H * 0.5 * (1 / cfg.scale)
           topPts.push([cx, cy - hw]); botPts.push([cx, cy + hw])
         }
         ctx.beginPath(); ctx.moveTo(topPts[0][0], topPts[0][1])
-        for (let s = 1; s <= segs; s++) { const [x0, y0] = topPts[s-1], [x1, y1] = topPts[s]; ctx.quadraticCurveTo(x0, y0, (x0+x1)/2, (y0+y1)/2) }
+        for (let s = 1; s <= segs; s++) { const [x0,y0]=topPts[s-1],[x1,y1]=topPts[s]; ctx.quadraticCurveTo(x0,y0,(x0+x1)/2,(y0+y1)/2) }
         ctx.lineTo(botPts[segs][0], botPts[segs][1])
-        for (let s = segs-1; s >= 0; s--) { const [x0, y0] = botPts[s+1], [x1, y1] = botPts[s]; ctx.quadraticCurveTo(x0, y0, (x0+x1)/2, (y0+y1)/2) }
+        for (let s = segs-1; s >= 0; s--) { const [x0,y0]=botPts[s+1],[x1,y1]=botPts[s]; ctx.quadraticCurveTo(x0,y0,(x0+x1)/2,(y0+y1)/2) }
         ctx.closePath()
-        const midY = liquidY(r, 0.5/cfg.scale, t)*H, hw = liquidW(r, 0.5/cfg.scale, t)*H*0.5*(1/cfg.scale)
+        const midY = liquidY(r, 0.5/cfg.scale, t)*H; const hw = liquidW(r, 0.5/cfg.scale, t)*H*0.5*(1/cfg.scale)
         const grad = ctx.createLinearGradient(0, midY-hw, 0, midY+hw)
         const a = Math.round(r.alpha*cfg.intensity*255).toString(16).padStart(2,'0')
         const amid = Math.round(r.alpha*cfg.intensity*0.55*255).toString(16).padStart(2,'0')
-        grad.addColorStop(0, col+'00'); grad.addColorStop(0.3, col+amid); grad.addColorStop(0.5, col+a); grad.addColorStop(0.7, col+amid); grad.addColorStop(1, col+'00')
-        ctx.fillStyle = grad; ctx.fill()
+        grad.addColorStop(0,col+'00'); grad.addColorStop(0.3,col+amid); grad.addColorStop(0.5,col+a)
+        grad.addColorStop(0.7,col+amid); grad.addColorStop(1,col+'00')
+        ctx.fillStyle=grad; ctx.fill()
       }
-      const cgx=W*0.5, cgy=H*0.5, cgrad=ctx.createRadialGradient(cgx,cgy,0,cgx,cgy,W*0.5)
-      cgrad.addColorStop(0, pal[0]+Math.round(0.06*cfg.intensity*255).toString(16).padStart(2,'0')); cgrad.addColorStop(1, pal[0]+'00')
+      const cgx=W*0.5,cgy=H*0.5; const cgrad=ctx.createRadialGradient(cgx,cgy,0,cgx,cgy,W*0.5)
+      cgrad.addColorStop(0,pal[0]+Math.round(0.06*cfg.intensity*255).toString(16).padStart(2,'0')); cgrad.addColorStop(1,pal[0]+'00')
       ctx.fillStyle=cgrad; ctx.fillRect(0,0,W,H); ctx.restore()
       const vig=ctx.createRadialGradient(W/2,H/2,H*0.1,W/2,H/2,W*0.88)
       vig.addColorStop(0,'rgba(0,0,0,0)'); vig.addColorStop(1,'rgba(0,0,0,0.88)')
@@ -77,30 +82,53 @@ export default function Hero() {
   }, [])
 
   return (<>
-    {/* ── DESKTOP HERO ── */}
+    {/* ── MOBILE HERO: white bg, dark text, exactly like wireframe ── */}
+    <section className="md:hidden bg-white pt-[72px]">
+      {/* Text block */}
+      <div className="px-5 pt-8 pb-6">
+        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#888] mb-[10px]">
+          Elite Marketing &amp; Growth Partner
+        </p>
+        <h1 className="font-serif text-[30px] leading-[1.1] tracking-[-0.02em] text-[#111] font-normal mb-[14px]">
+          Crafting brands that stand above the noise.
+        </h1>
+        <p className="text-[13px] leading-[1.65] text-[#555] mb-0">
+          We engineer scalable growth for brands that demand authority, not just visibility.
+        </p>
+        <div className="flex gap-[10px] mt-5">
+          <Link href="/clientele" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-[#111] text-white border-[1.5px] border-[#111]">
+            View Portfolio →
+          </Link>
+          <Link href="/services" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-transparent text-[#111] border-[1.5px] border-[#111]">
+            Our Services
+          </Link>
+        </div>
+      </div>
+      {/* Hero image placeholder — 16:9 grey box */}
+      <div className="px-5 pb-8">
+        <div className="w-full rounded-[10px] bg-[#ebebeb] overflow-hidden" style={{ aspectRatio: '16/9' }} />
+      </div>
+    </section>
+
+    {/* ── DESKTOP HERO: black bg, canvas animation ── */}
     <section className="hidden md:flex relative min-h-[100dvh] items-center justify-center px-12 lg:px-16 py-32" style={{ background: '#000' }}>
       <canvas ref={canvasRef} style={{ position:'absolute', inset:0, width:'100%', height:'100%', opacity:0, transition:'opacity 1.5s ease' }} />
       <div style={{ position:'absolute', inset:0, backgroundImage:`url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`, backgroundSize:'200px', opacity:0.5, pointerEvents:'none' }} />
       <div className="relative z-10 max-w-5xl mx-auto text-center">
-        <div className="mb-8"><span className="text-white/40 text-xs font-semibold uppercase tracking-[0.3em]">Elite Marketing &amp; Growth Partner</span></div>
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-light mb-6 leading-tight text-white">Crafting brands that<br />stand above the noise</h1>
+        <div className="mb-8">
+          <span className="text-white/40 text-xs font-semibold uppercase tracking-[0.3em]">Elite Marketing &amp; Growth Partner</span>
+        </div>
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-light mb-6 leading-tight text-white">
+          Crafting brands that<br />stand above the noise
+        </h1>
         <div className="h-px w-16 bg-white/20 mx-auto mb-8" />
-        <p className="text-lg md:text-xl text-white/60 max-w-3xl mx-auto mb-12">We engineer scalable growth for brands that demand authority, not just visibility.</p>
-        <div className="flex gap-4 justify-center">
+        <p className="text-lg md:text-xl text-white/60 max-w-3xl mx-auto mb-12">
+          We engineer scalable growth for brands that demand authority, not just visibility.
+        </p>
+        <div className="flex flex-row gap-4 justify-center">
           <Link href="/clientele" className="bg-white text-black px-10 py-4 font-semibold text-sm uppercase tracking-[0.2em] transition-all duration-300 hover:scale-105">View Portfolio</Link>
           <Link href="/services" className="border border-white text-white px-10 py-4 font-semibold text-sm uppercase tracking-[0.2em] transition-all duration-300 hover:bg-white hover:text-black">Our Services</Link>
         </div>
-      </div>
-    </section>
-
-    {/* ── MOBILE HERO ── */}
-    <section className="md:hidden bg-black pt-24 pb-6 px-5">
-      <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 mb-3">Elite Marketing &amp; Growth Partner</p>
-      <h1 className="font-serif text-[1.9rem] leading-[1.1] text-white mb-4 font-light">Crafting brands that stand above the noise.</h1>
-      <p className="text-[13px] leading-relaxed text-white/50 mb-6">We engineer scalable growth for brands that demand authority, not just visibility.</p>
-      <div className="flex gap-3">
-        <Link href="/clientele" className="flex-1 bg-white text-black text-center py-3 rounded-lg text-[12px] font-semibold uppercase tracking-[0.1em]">View Portfolio →</Link>
-        <Link href="/services" className="flex-1 border border-white/40 text-white text-center py-3 rounded-lg text-[12px] font-semibold uppercase tracking-[0.1em]">Our Services</Link>
       </div>
     </section>
   </>)
