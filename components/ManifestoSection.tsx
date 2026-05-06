@@ -3,13 +3,13 @@ export default function ManifestoSection() {
     <section>
       {/* ── MOBILE: white bg, left-border quote block ── */}
       <div className="md:hidden bg-white px-5 py-8">
-        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#888] mb-4">Founders Message</p>
-        <div className="bg-[#f9f9f9] border-l-[3px] border-[#ddd] rounded-r-[10px] p-5">
-          <div className="font-serif text-[48px] text-[#ddd] leading-[0.8] mb-2">&ldquo;</div>
-          <p className="font-serif text-[15px] italic text-[#222] leading-[1.5]">
+        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#444] mb-4">Founders Message</p>
+        <div className="bg-[#f4f4f4] border-l-[3px] border-[#bbb] rounded-r-[10px] p-5">
+          
+          <p className="font-serif text-[17px] italic text-[#111] leading-[1.5]">
             From presence to permanence, Enhanccee builds brands that define their era.
           </p>
-          <p className="text-[11px] text-[#aaa] mt-3">
+          <p className="text-[12px] text-[#555] mt-3">
             This is our commitment to every partner who walks through our doors.
           </p>
         </div>
