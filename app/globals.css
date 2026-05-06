@@ -108,6 +108,10 @@ html, body {
   }
 }
 
+/* Ensure text color utility classes are not overridden by body color inheritance */
+.text-black { color: #000000 !important; }
+.text-white { color: #ffffff !important; }
+
 /* Cinematic cursor + scroll effects (home page) */
 
 #cur {
