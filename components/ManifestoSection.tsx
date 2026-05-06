@@ -1,45 +1,53 @@
-export default function ManifestoSection() {
-  return (
-    <section>
-      {/* ── MOBILE: white bg, left-border quote block, exactly like wireframe ── */}
-      <div className="md:hidden bg-white px-5 py-8">
-        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#888] mb-4">Founders Message</p>
-        <div className="bg-[#f9f9f9] border-l-[3px] border-[#ddd] rounded-r-[10px] p-5">
-          <div className="font-serif text-[48px] text-[#ddd] leading-[0.8] mb-2">&ldquo;</div>
-          <p className="font-serif text-[15px] italic text-[#222] leading-[1.5]">
-            From presence to permanence, Enhanccee builds brands that define their era.
-          </p>
-          <p className="text-[11px] text-[#aaa] mt-3">
-            This is our commitment to every partner who walks through our doors.
-          </p>
-        </div>
-      </div>
+"use client";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import Fabcurate from './IMG/images (1).png'
+import Superkicks from './IMG/images (2).png'
+import Tichu from './IMG/images (4)_edited.png'
+import RangatJaipur from './IMG/images (4)_edited_edited.jpg'
+import Vako from './IMG/Untitled design (7).png'
+import Outro from './IMG/Untitled design (8).png'
 
-      {/* ── DESKTOP: original layout ── */}
-      <div className="hidden md:block" style={{ padding:'3rem 0', background:'#000', borderBottom:'1px solid rgba(255,255,255,0.1)' }}>
-        <style>{`
-          .manifesto-inner { display:flex; flex-direction:row; align-items:flex-start; gap:48px; max-width:1280px; margin:0 auto; padding:0 24px; }
-          .manifesto-label { flex-shrink:0; padding-top:32px; min-width:120px; }
-        `}</style>
-        <div className="manifesto-inner">
-          <div className="manifesto-label">
-            <div style={{ fontFamily:'var(--font-montserrat)', fontSize:'.7rem', fontWeight:700, color:'rgba(255,255,255,0.5)', letterSpacing:'.15em', textTransform:'uppercase', lineHeight:1.6 }}>
-              Founders<br />Message
+const logos = [Fabcurate, Superkicks, RangatJaipur, Vako, Outro, Tichu];
+
+export default function MotionLogo() {
+  return (<>
+    {/* ── MOBILE: scrolling marquee, bigger logos ── */}
+    <div className="md:hidden bg-black border-t border-white/10 py-5 overflow-hidden">
+      <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-white/30 text-center mb-4">
+        Trusted by Leading Brands
+      </p>
+      <div className="relative">
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-10 z-10" style={{ background:'linear-gradient(to right, black, transparent)' }} />
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-10 z-10" style={{ background:'linear-gradient(to left, black, transparent)' }} />
+        <motion.div
+          className="flex gap-8 w-max"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+        >
+          {[...logos, ...logos].map((logo, i) => (
+            <div key={i} className="relative h-[40px] w-[120px] flex-shrink-0">
+              <Image src={logo} alt="brand" fill sizes="120px" className="object-contain object-center invert opacity-70" />
             </div>
-          </div>
-          <div style={{ flex:1 }}>
-            <span style={{ fontFamily:'var(--font-cormorant)', fontSize:'clamp(3rem,6vw,6rem)', lineHeight:0.4, color:'rgba(255,255,255,0.2)', display:'block', marginBottom:8 }}>&ldquo;</span>
-            <h2 style={{ fontFamily:'var(--font-cormorant)', fontSize:'clamp(1.5rem,3vw,2.5rem)', fontWeight:700, color:'#fff', lineHeight:1.3 }}>
-              From presence to permanence, Enhanccee builds brands that define their era.
-            </h2>
-            <span style={{ fontFamily:'var(--font-cormorant)', fontSize:'clamp(3rem,6vw,6rem)', lineHeight:0.2, color:'rgba(255,255,255,0.2)', display:'block', textAlign:'right', marginBottom:24 }}>&rdquo;</span>
-            <div style={{ height:1, width:64, background:'#C9A84C', marginLeft:'auto', marginBottom:20 }} />
-            <p style={{ color:'rgba(255,255,255,0.5)', fontSize:'clamp(.85rem,1.2vw,1rem)', fontWeight:300, letterSpacing:'0.05em', textAlign:'right' }}>
-              This is our commitment to every partner who walks through our doors.
-            </p>
-          </div>
-        </div>
+          ))}
+        </motion.div>
+      </div>
+    </div>
+
+    {/* ── DESKTOP: original scrolling marquee ── */}
+    <section className="hidden md:block relative bg-black border-t border-white/10 overflow-hidden py-10 sm:py-12">
+      <div className="pointer-events-none absolute left-0 top-0 h-full w-24 z-10" style={{ background:'linear-gradient(to right, black, transparent)' }} />
+      <div className="pointer-events-none absolute right-0 top-0 h-full w-24 z-10" style={{ background:'linear-gradient(to left, black, transparent)' }} />
+      <p className="text-center text-white/40 text-xs uppercase tracking-[0.3em] mb-8">Trusted by Leading Brands</p>
+      <div className="overflow-hidden">
+        <motion.div className="flex gap-10 w-max" animate={{ x: ["0%", "-50%"] }} transition={{ repeat: Infinity, duration: 35, ease: "linear" }}>
+          {[...logos, ...logos].map((logo, i) => (
+            <div key={i} className="relative h-[5.4rem] w-[168px] sm:h-[6.6rem] sm:w-[216px] md:h-[134px] md:w-[264px] flex-shrink-0">
+              <Image src={logo} alt="brand" fill sizes="(max-width: 640px) 168px, (max-width: 1024px) 216px, 264px" className="object-contain object-center invert opacity-80 hover:opacity-100 transition-all duration-300" />
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
-  )
+  </>)
 }
