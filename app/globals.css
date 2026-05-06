@@ -289,6 +289,12 @@ a[style*="background"][style*="white"] * {
   border-color: var(--gold);
 }
 
+/* Ensure Tailwind hidden class works on mobile despite !important overrides */
+@media (max-width: 767px) {
+  .md\:hidden { display: block !important; }
+  .hidden.md\:block, section.hidden { display: none !important; }
+}
+
 /* Hide custom cursor on touch/mobile devices */
 @media (max-width: 1024px), (hover: none), (pointer: coarse) {
   #cur,
