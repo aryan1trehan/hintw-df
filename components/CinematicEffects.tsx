@@ -43,22 +43,30 @@ export default function CinematicEffects() {
     }
     loop()
 
-    // Scroll reveal for sections – keep existing layout, just add animation classes.
+    // Scroll reveal — desktop only (mobile gets instant visibility)
+    const isMobile = window.innerWidth < 768 || window.matchMedia('(hover: none)').matches
     const sections = Array.from(document.querySelectorAll<HTMLElement>('main section'))
-    sections.forEach((sec) => sec.classList.add('cinematic-section'))
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
-            entry.target.classList.add('cinematic-section-visible')
-          }
-        })
-      },
-      { threshold: [0.25, 0.5] }
-    )
-
-    sections.forEach((sec) => io.observe(sec))
+    if (isMobile) {
+      // On mobile: skip animation entirely, all sections visible immediately
+      sections.forEach((sec) => {
+        sec.style.opacity = '1'
+        sec.style.transform = 'none'
+      })
+    } else {
+      sections.forEach((sec) => sec.classList.add('cinematic-section'))
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
+              entry.target.classList.add('cinematic-section-visible')
+            }
+          })
+        },
+        { threshold: [0.25, 0.5] }
+      )
+      sections.forEach((sec) => io.observe(sec))
+    }
 
     // Smooth scrolling for anchor links
     const handleAnchorClick = (e: MouseEvent) => {
@@ -92,8 +100,3 @@ export default function CinematicEffects() {
     </>
   )
 }
-
-
-
-
-
