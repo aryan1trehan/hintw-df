@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
 
         {/* ── Top CTA — desktop only ── */}
-        <div className="hidden md:block text-center mb-10 sm:mb-14 md:mb-16 px-1">
+        <div className="text-center mb-10 sm:mb-14 md:mb-16 px-1">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl tracking-[0.08em] sm:tracking-[0.1em] uppercase font-serif font-light text-white inline-flex items-center gap-1.5 sm:gap-2 flex-wrap justify-center leading-tight">
             <span>PR</span>
             <Link
@@ -37,10 +37,10 @@ export default function Footer() {
         </div>
 
         {/* ── Divider — desktop only ── */}
-        <div className="hidden md:block h-px bg-white/10 mb-12" />
+        <div className="h-px bg-white/10 mb-12" />
 
         {/* ── Social buttons — desktop only ── */}
-        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-10 sm:mb-14">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-10 sm:mb-14">
           {[
             { label: 'Facebook', href: '#' },
             { label: 'Twitter', href: '#' },
