@@ -326,7 +326,7 @@ export default function BentoFeatures() {
             { title: 'Real data, not guesswork', desc: 'Every campaign is data-driven and optimised for results' },
             { title: 'Unveiled Metrics', desc: 'Total visibility into your marketing investments' },
             { title: 'Top industry experience', desc: '15+ years of proven expertise across industries' },
-            { title: 'Client-first approach', desc: 'Your goals become our KPIs — always' },
+            { title: 'Client-first approach', desc: 'Your goals become our KPIs' },
           ].map((p, i) => (
             <div key={i} className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-[10px] px-3 py-4">
               <h3 className="text-[12px] font-bold text-white mb-[6px] leading-[1.3]">{p.title}</h3>
