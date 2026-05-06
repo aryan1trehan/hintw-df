@@ -12,20 +12,18 @@ export default function Header() {
     <header style={{ position:'fixed', top:0, left:0, right:0, zIndex:50 }}>
 
       {/* ── MOBILE NAV ── */}
-      <div className="md:hidden" style={{ background:'#000', borderBottom:'1px solid rgba(255,255,255,0.1)', padding:'14px 20px', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', width:'100%', boxSizing:'border-box' }}>
-        {/* Logo */}
-        <Link href="/" style={{ fontFamily:'var(--font-cormorant), Georgia, serif', fontSize:17, color:'#fff', textDecoration:'none', letterSpacing:'-0.01em', flexShrink:0 }}>
+      <div className="md:hidden" style={{ background:'#000', borderBottom:'1px solid rgba(255,255,255,0.1)', padding:'12px 16px', display:'flex', flexDirection:'row', flexWrap:'nowrap', alignItems:'center', justifyContent:'space-between', width:'100%', boxSizing:'border-box' }}>
+        <Link href="/" style={{ color:'#fff', textDecoration:'none', fontSize:15, letterSpacing:'-0.01em', flexShrink:0, lineHeight:1 }}>
           enhanccee
         </Link>
-        {/* Right side: Enquiry + Hamburger */}
-        <div style={{ display:'flex', flexDirection:'row', alignItems:'center', gap:12, flexShrink:0 }}>
-          <Link href="/contact" style={{ fontSize:11, fontWeight:600, color:'#fff', border:'1.5px solid rgba(255,255,255,0.3)', padding:'5px 12px', borderRadius:6, textDecoration:'none', whiteSpace:'nowrap' }}>
+        <div style={{ display:'flex', flexDirection:'row', flexWrap:'nowrap', alignItems:'center', gap:10, flexShrink:0 }}>
+          <Link href="/contact" style={{ fontSize:11, fontWeight:600, color:'#fff', border:'1.5px solid rgba(255,255,255,0.4)', padding:'5px 10px', borderRadius:6, textDecoration:'none', whiteSpace:'nowrap', lineHeight:1 }}>
             Enquiry
           </Link>
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu" style={{ background:'none', border:'none', padding:0, cursor:'pointer', display:'flex', flexDirection:'column', gap:5 }}>
-            <span style={{ display:'block', width:20, height:2, background:'#fff', borderRadius:2 }} />
-            <span style={{ display:'block', width:20, height:2, background:'#fff', borderRadius:2 }} />
-            <span style={{ display:'block', width:20, height:2, background:'#fff', borderRadius:2 }} />
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu" style={{ background:'none', border:'none', padding:'2px 0', cursor:'pointer', display:'flex', flexDirection:'column', gap:4, flexShrink:0 }}>
+            <span style={{ display:'block', width:18, height:2, background:'#fff', borderRadius:1 }} />
+            <span style={{ display:'block', width:18, height:2, background:'#fff', borderRadius:1 }} />
+            <span style={{ display:'block', width:18, height:2, background:'#fff', borderRadius:1 }} />
           </button>
         </div>
       </div>
