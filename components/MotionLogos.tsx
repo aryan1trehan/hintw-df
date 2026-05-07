@@ -30,7 +30,7 @@ export default function MotionLogo() {
         >
           {[...logos, ...logos].map((logo, i) => (
             <div key={i} style={{ position:'relative', height:40, width:120, flexShrink:0 }}>
-              <Image src={logo} alt="brand" fill sizes="120px" style={{ objectFit:'contain', objectPosition:'center', filter:'brightness(0) invert(1)', opacity:0.7 }} />
+              <Image src={logo} alt="brand" fill sizes="120px" style={{ objectFit:'contain', objectPosition:'center', opacity:0.9 }} />
             </div>
           ))}
         </motion.div>
@@ -50,7 +50,7 @@ export default function MotionLogo() {
         >
           {[...logos, ...logos].map((logo, i) => (
             <div key={i} style={{ position:'relative', height:80, width:200, flexShrink:0 }}>
-              <Image src={logo} alt="brand" fill sizes="200px" style={{ objectFit:'contain', objectPosition:'center', filter:'brightness(0) invert(1)', opacity:0.85 }} />
+              <Image src={logo} alt="brand" fill sizes="200px" style={{ objectFit:'contain', objectPosition:'center', opacity:0.9 }} />
             </div>
           ))}
         </motion.div>
