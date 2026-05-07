@@ -41,7 +41,7 @@ export default function MotionLogo() {
       <p className="text-center text-white/40 text-xs uppercase tracking-[0.3em] mb-8">Trusted by Leading Brands</p>
       <div className="overflow-hidden">
         <motion.div className="flex gap-10 w-max" animate={{ x: ["0%", "-50%"] }} transition={{ repeat: Infinity, duration: 35, ease: "linear" }}>
-          {[...logos, ...logos].map((logo, i) => (
+          {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
             <div key={i} className="relative h-[5.4rem] w-[168px] sm:h-[6.6rem] sm:w-[216px] md:h-[134px] md:w-[264px] flex-shrink-0">
               <Image src={logo} alt="brand" fill sizes="(max-width: 640px) 168px, (max-width: 1024px) 216px, 264px" className="object-contain object-center invert opacity-80 hover:opacity-100 transition-all duration-300" />
             </div>
