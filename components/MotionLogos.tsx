@@ -1,17 +1,13 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Fabcurate from './IMG/images (1).png'
-import Superkicks from './IMG/images (2).png'
-import Tichu from './IMG/images (4)_edited.png'
-import RangatJaipur from './IMG/images (4)_edited_edited.jpg'
-import Vako from './IMG/Untitled design (7).png'
-import Outro from './IMG/Untitled design (8).png'
 import Bunai from './IMG/Bunai .png'
 import PinkFalcon from './IMG/Pink Falcon .png'
 import Tabeer from './IMG/Tabeer India .png'
+import Superkicks from './IMG/images (2).png'
+import Fabcurate from './IMG/images (1).png'
 
-const logos = [Fabcurate, Superkicks, Tichu, RangatJaipur, Vako, Outro, Bunai, PinkFalcon, Tabeer];
+const logos = [Bunai, PinkFalcon, Tabeer, Superkicks, Fabcurate];
 
 export default function MotionLogo() {
   return (<>
@@ -30,7 +26,7 @@ export default function MotionLogo() {
         >
           {[...logos, ...logos].map((logo, i) => (
             <div key={i} style={{ position:'relative', height:40, width:120, flexShrink:0 }}>
-              <Image src={logo} alt="brand" fill sizes="120px" style={{ objectFit:'contain', objectPosition:'center', opacity:0.9, mixBlendMode:'screen' as const }} />
+              <Image src={logo} alt="brand" fill sizes="120px" style={{ objectFit:'contain', objectPosition:'center', opacity:0.9 }} />
             </div>
           ))}
         </motion.div>
@@ -50,7 +46,7 @@ export default function MotionLogo() {
         >
           {[...logos, ...logos].map((logo, i) => (
             <div key={i} style={{ position:'relative', height:80, width:200, flexShrink:0 }}>
-              <Image src={logo} alt="brand" fill sizes="200px" style={{ objectFit:'contain', objectPosition:'center', opacity:0.9, mixBlendMode:'screen' as const }} />
+              <Image src={logo} alt="brand" fill sizes="200px" style={{ objectFit:'contain', objectPosition:'center', opacity:0.9 }} />
             </div>
           ))}
         </motion.div>
