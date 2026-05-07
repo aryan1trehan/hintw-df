@@ -7,43 +7,50 @@ import Tichu from './IMG/images (4)_edited.png'
 import RangatJaipur from './IMG/images (4)_edited_edited.jpg'
 import Vako from './IMG/Untitled design (7).png'
 import Outro from './IMG/Untitled design (8).png'
+import Bunai from './IMG/Bunai .png'
+import PinkFalcon from './IMG/Pink Falcon .png'
+import Tabeer from './IMG/Tabeer India .png'
 
-const logos = [Fabcurate, Superkicks, RangatJaipur, Vako, Outro, Tichu];
+const logos = [Fabcurate, Superkicks, Tichu, RangatJaipur, Vako, Outro, Bunai, PinkFalcon, Tabeer];
 
 export default function MotionLogo() {
   return (<>
-    {/* ── MOBILE: scrolling marquee, bigger logos ── */}
-    <div className="md:hidden bg-black border-t border-white/10 py-5 overflow-hidden">
-      <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-white/30 text-center mb-4">
+    {/* ── MOBILE: scrolling marquee ── */}
+    <div className="mobile-nav" style={{ background:'#000', borderTop:'1px solid rgba(255,255,255,0.1)', padding:'20px 0', overflow:'hidden' }}>
+      <p style={{ textAlign:'center', fontSize:9, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'rgba(255,255,255,0.3)', marginBottom:16 }}>
         Trusted by Leading Brands
       </p>
-      <div className="relative">
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-10 z-10" style={{ background:'linear-gradient(to right, black, transparent)' }} />
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-10 z-10" style={{ background:'linear-gradient(to left, black, transparent)' }} />
+      <div style={{ position:'relative' }}>
+        <div style={{ position:'absolute', left:0, top:0, height:'100%', width:40, zIndex:10, background:'linear-gradient(to right, black, transparent)' }} />
+        <div style={{ position:'absolute', right:0, top:0, height:'100%', width:40, zIndex:10, background:'linear-gradient(to left, black, transparent)' }} />
         <motion.div
-          className="flex gap-8 w-max"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+          style={{ display:'flex', gap:32, width:'max-content' }}
+          animate={{ x: ['0%', '-50%'] }}
+          transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
         >
           {[...logos, ...logos].map((logo, i) => (
-            <div key={i} className="relative h-[40px] w-[120px] flex-shrink-0">
-              <Image src={logo} alt="brand" fill sizes="120px" className="object-contain object-center invert opacity-70" />
+            <div key={i} style={{ position:'relative', height:40, width:120, flexShrink:0 }}>
+              <Image src={logo} alt="brand" fill sizes="120px" style={{ objectFit:'contain', objectPosition:'center', filter:'invert(1)', opacity:0.7 }} />
             </div>
           ))}
         </motion.div>
       </div>
     </div>
 
-    {/* ── DESKTOP: original scrolling marquee ── */}
-    <section className="hidden md:block relative bg-black border-t border-white/10 overflow-hidden py-10 sm:py-12">
-      <div className="pointer-events-none absolute left-0 top-0 h-full w-24 z-10" style={{ background:'linear-gradient(to right, black, transparent)' }} />
-      <div className="pointer-events-none absolute right-0 top-0 h-full w-24 z-10" style={{ background:'linear-gradient(to left, black, transparent)' }} />
-      <p className="text-center text-white/40 text-xs uppercase tracking-[0.3em] mb-8">Trusted by Leading Brands</p>
-      <div className="overflow-hidden">
-        <motion.div className="flex gap-10 w-max" animate={{ x: ["0%", "-50%"] }} transition={{ repeat: Infinity, duration: 35, ease: "linear" }}>
-          {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
-            <div key={i} className="relative h-[5.4rem] w-[168px] sm:h-[6.6rem] sm:w-[216px] md:h-[134px] md:w-[264px] flex-shrink-0">
-              <Image src={logo} alt="brand" fill sizes="(max-width: 640px) 168px, (max-width: 1024px) 216px, 264px" className="object-contain object-center invert opacity-80 hover:opacity-100 transition-all duration-300" />
+    {/* ── DESKTOP: scrolling marquee ── */}
+    <section className="desktop-nav" style={{ background:'#000', borderTop:'1px solid rgba(255,255,255,0.1)', overflow:'hidden', padding:'40px 0' }}>
+      <div style={{ position:'relative' }}>
+        <div style={{ position:'absolute', left:0, top:0, height:'100%', width:96, zIndex:10, background:'linear-gradient(to right, black, transparent)' }} />
+        <div style={{ position:'absolute', right:0, top:0, height:'100%', width:96, zIndex:10, background:'linear-gradient(to left, black, transparent)' }} />
+        <p style={{ textAlign:'center', fontSize:11, fontWeight:600, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.4)', marginBottom:32 }}>Trusted by Leading Brands</p>
+        <motion.div
+          style={{ display:'flex', gap:40, width:'max-content' }}
+          animate={{ x: ['0%', '-50%'] }}
+          transition={{ repeat: Infinity, duration: 35, ease: 'linear' }}
+        >
+          {[...logos, ...logos].map((logo, i) => (
+            <div key={i} style={{ position:'relative', height:80, width:200, flexShrink:0 }}>
+              <Image src={logo} alt="brand" fill sizes="200px" style={{ objectFit:'contain', objectPosition:'center', filter:'invert(1)', opacity:0.8 }} />
             </div>
           ))}
         </motion.div>
