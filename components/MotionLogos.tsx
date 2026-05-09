@@ -3,10 +3,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 // White bg logos — need invert to show on black
-import Tichu from './IMG/images (4)_edited.png'
+import Tichu from './IMG/Tichu_transparent.png'
 import RangatJaipur from './IMG/images (4)_edited_edited.jpg'
 import Vako from './IMG/Untitled design (7).png'
-import Outro from './IMG/Untitled design (8).png'
+import Outro from './IMG/Outro_transparent.png'
 import Fabcurate from './IMG/images (1).png'
 
 // Dark/transparent bg logos — show as-is
@@ -15,8 +15,8 @@ import Bunai from './IMG/Bunai .png'
 import PinkFalcon from './IMG/Pink Falcon .png'
 import Tabeer from './IMG/Tabeer India .png'
 
-const whiteBgLogos = [Tichu, RangatJaipur, Vako, Outro, Fabcurate];
-const darkBgLogos = [Superkicks, Bunai, PinkFalcon, Tabeer];
+const whiteBgLogos = [RangatJaipur, Vako, Fabcurate, Outro];
+const darkBgLogos = [Superkicks, Bunai, PinkFalcon, Tabeer, Tichu];
 
 type LogoEntry = { src: ReturnType<typeof Object>, invert: boolean }
 const allLogos: { src: Parameters<typeof Image>[0]['src'], invert: boolean }[] = [
