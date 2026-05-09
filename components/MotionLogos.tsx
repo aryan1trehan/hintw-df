@@ -3,10 +3,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 // White bg logos — need invert to show on black
-import Tichu from './IMG/Tichu_transparent.png'
+import Tichu from './IMG/images (4)_edited_edited.jpg'
 import RangatJaipur from './IMG/images (4)_edited_edited.jpg'
 import Vako from './IMG/Untitled design (7).png'
-import Outro from './IMG/Outro_transparent.png'
+import Outro from './IMG/Untitled design (8).png'
 import Fabcurate from './IMG/images (1).png'
 
 // Dark/transparent bg logos — show as-is
