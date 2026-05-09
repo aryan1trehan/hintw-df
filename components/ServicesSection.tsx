@@ -21,6 +21,12 @@ const icons = [
 export default function ServicesSection() {
   return (
     <section>
+      <style>{`
+        .service-card:hover .service-title { color: #000000 !important; }
+        .service-card:hover .service-desc { color: #000000 !important; }
+        .service-card:hover .service-link { color: #000000 !important; }
+        .service-card:hover svg { color: #000000 !important; }
+      `}</style>
       {/* ── MOBILE: white bg, list rows with dividers, exactly like wireframe ── */}
       <div className="md:hidden bg-white px-5 py-8">
         <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#888] mb-[10px]">Our Services</p>
@@ -50,12 +56,12 @@ export default function ServicesSection() {
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-px bg-white/10">
             {services.map((service, index) => (
-              <Link key={index} href={service.link} className="bg-black p-8 md:p-10 transition-all duration-300 hover:bg-white group flex flex-col min-h-0">
+              <Link key={index} href={service.link} className="service-card bg-black p-8 md:p-10 transition-all duration-300 hover:bg-white group flex flex-col min-h-0">
                 <div className="text-white/60 mb-6 group-hover:text-black group-hover:scale-110 transition-all duration-300">{icons[index]}</div>
-                <h3 className="text-lg font-semibold text-white uppercase tracking-widest mb-3 group-hover:text-black transition-colors duration-300">{service.title}</h3>
+                <h3 className="service-title text-lg font-semibold text-white uppercase tracking-widest mb-3 transition-colors duration-300">{service.title}</h3>
                 <div className="h-px w-8 bg-white/20 mb-4 group-hover:w-16 group-hover:bg-black transition-all duration-300" />
-                <p className="text-white/60 leading-relaxed text-sm flex-1 group-hover:text-black transition-colors duration-300">{service.description}</p>
-                <span className="mt-6 text-white/40 text-xs uppercase tracking-[0.2em] group-hover:text-black transition-colors duration-300">Learn More →</span>
+                <p className="service-desc text-white/60 leading-relaxed text-sm flex-1 transition-colors duration-300">{service.description}</p>
+                <span className="service-link mt-6 text-white/40 text-xs uppercase tracking-[0.2em] transition-colors duration-300">Learn More →</span>
               </Link>
             ))}
           </div>
