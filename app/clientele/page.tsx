@@ -12,6 +12,8 @@ import PinkFalcon from '@/components/IMG/Pink Falcon .png'
 import FabcurateNew from '@/components/IMG/Fabcurate .png'
 import Eveman from '@/components/IMG/Eveman.png'
 import Bunai from '@/components/IMG/Bunai .png'
+import Fostersoccer from '@/components/IMG/Fostersoccer.jpg'
+import KismaCollections from '@/components/IMG/Kisma Collections.png'
 
 const clients = [
   { name: 'Fabcurate', logo: Fabcurate, invert: true },
@@ -25,6 +27,8 @@ const clients = [
   { name: 'Fabcurate', logo: FabcurateNew, invert: false },
   { name: 'Evemen', logo: Eveman, invert: false },
   { name: 'Bunaai', logo: Bunai, invert: false },
+  { name: 'Foster Soccer', logo: Fostersoccer, invert: false },
+  { name: 'Kisma Collections', logo: KismaCollections, invert: false },
 ]
 
 export default function ClientelePage() {
