@@ -14,9 +14,12 @@ import Superkicks from './IMG/images (2).png'
 import Bunai from './IMG/Bunai .png'
 import PinkFalcon from './IMG/Pink Falcon .png'
 import Tabeer from './IMG/Tabeer India .png'
+import Fostersoccer from './IMG/Fostersoccer.jpg'
+import KismaCollections from './IMG/Kisma Collections.png'
+import Eveman from './IMG/Eveman.png'
 
 const whiteBgLogos = [RangatJaipur, Vako, Fabcurate, Outro];
-const darkBgLogos = [Superkicks, Bunai, PinkFalcon, Tabeer, Tichu];
+const darkBgLogos = [Superkicks, Bunai, PinkFalcon, Tabeer, Tichu, Fostersoccer, KismaCollections, Eveman];
 
 type LogoEntry = { src: ReturnType<typeof Object>, invert: boolean }
 const allLogos: { src: Parameters<typeof Image>[0]['src'], invert: boolean }[] = [
