@@ -337,7 +337,7 @@ export default function BentoFeatures() {
       </div>
 
       {/* ── DESKTOP: original animated canvas cards ── */}
-      <div className="hidden md:block" style={{ padding:'5rem 24px', background:'#000' }}>
+      <div className="hidden md:block" style={{ padding:'5rem 24px', background:'#1b0904' }}>
         <div style={{ maxWidth:1280, margin:'0 auto' }}>
           <style>{`.bento-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }`}</style>
           <div className="bento-grid">

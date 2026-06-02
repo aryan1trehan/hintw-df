@@ -42,7 +42,7 @@ export default function Hero() {
       const t = (now - start) / 1000
       const W = canvas.width, H = canvas.height
       const pal = PALETTES.mono
-      ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#000000'; ctx.fillRect(0, 0, W, H)
+      ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#1b0904'; ctx.fillRect(0, 0, W, H)
       ctx.save(); ctx.globalCompositeOperation = 'lighter'
       for (const r of ribbons) {
         const col = pal[r.palIdx]; const segs = r.segments
@@ -81,7 +81,7 @@ export default function Hero() {
 
   return (<>
     {/* ── MOBILE HERO: black bg, white text ── */}
-    <section className="md:hidden bg-black pt-[72px]">
+    <section className="md:hidden bg-[#1b0904] pt-[72px]">
       <div className="px-5 pt-8 pb-6">
         <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-white/40 mb-[10px]">
           Elite Marketing &amp; Growth Partner
@@ -93,7 +93,7 @@ export default function Hero() {
           We engineer scalable growth for brands that demand authority, not just visibility.
         </p>
         <div className="flex gap-[10px] mt-5">
-          <Link href="/clientele" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-white border-[1.5px] border-white" style={{color:"#000000"}}>
+          <Link href="/clientele" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-white border-[1.5px] border-white" style={{color:"#1a0905"}}>
             View Portfolio →
           </Link>
           <Link href="/services" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-transparent text-white border-[1.5px] border-white/40">
@@ -105,7 +105,7 @@ export default function Hero() {
     </section>
 
     {/* ── DESKTOP HERO ── */}
-    <section className="hidden md:flex relative min-h-[100dvh] items-center justify-center px-12 lg:px-16 py-32" style={{ background: '#000' }}>
+    <section className="hidden md:flex relative min-h-[100dvh] items-center justify-center px-12 lg:px-16 py-32" style={{ background: '#1b0904' }}>
       <canvas ref={canvasRef} style={{ position:'absolute', inset:0, width:'100%', height:'100%', opacity:0, transition:'opacity 1.5s ease' }} />
       <div style={{ position:'absolute', inset:0, backgroundImage:`url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`, backgroundSize:'200px', opacity:0.5, pointerEvents:'none' }} />
       <div className="relative z-10 max-w-5xl mx-auto text-center">

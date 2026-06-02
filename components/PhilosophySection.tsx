@@ -32,7 +32,7 @@ export default function LongGameSection() {
       </div>
 
       {/* ── DESKTOP: original 2-col layout ── */}
-      <div className="hidden md:block py-20 md:py-24 bg-black border-t border-white/10">
+      <div className="hidden md:block py-20 md:py-24 bg-[#1b0904] border-t border-white/10">
         <div className="container mx-auto px-12 lg:px-16">
           <div className="max-w-7xl mx-auto">
             <div className="inline-flex items-center gap-2 border border-white/20 rounded-full px-4 py-1.5 mb-10">

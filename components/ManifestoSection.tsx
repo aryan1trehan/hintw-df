@@ -16,7 +16,7 @@ export default function ManifestoSection() {
       </div>
 
       {/* ── DESKTOP: original layout ── */}
-      <div className="hidden md:block" style={{ padding:'3rem 0', background:'#000', borderBottom:'1px solid rgba(255,255,255,0.1)' }}>
+      <div className="hidden md:block" style={{ padding:'3rem 0', background:'#1b0904', borderBottom:'1px solid rgba(255,255,255,0.1)' }}>
         <style>{`
           .manifesto-inner { display:flex; flex-direction:row; align-items:flex-start; gap:48px; max-width:1280px; margin:0 auto; padding:0 24px; }
           .manifesto-label { flex-shrink:0; padding-top:32px; min-width:120px; }

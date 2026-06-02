@@ -41,7 +41,7 @@ export default function ResultsSection() {
       </div>
 
       {/* ── DESKTOP: original layout ── */}
-      <div className="hidden md:block pt-24 md:pt-32 pb-12 md:pb-14 bg-black relative overflow-hidden">
+      <div className="hidden md:block pt-24 md:pt-32 pb-12 md:pb-14 bg-[#1b0904] relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage:`url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
         <div className="container mx-auto px-12 lg:px-16 relative z-10">
           <div className={`text-center mb-16 md:mb-20 ${visible ? 'result-header-visible' : 'result-header-hidden'}`}>
@@ -52,7 +52,7 @@ export default function ResultsSection() {
           </div>
           <div className="grid grid-cols-3 gap-6 lg:gap-8">
             {results.map((result, index) => (
-              <div key={index} className={`result-card bg-black border border-white/10 px-8 py-10 text-center hover:border-white/30 group relative flex flex-col items-center justify-center min-h-[200px] ${visible ? 'result-card-visible' : 'result-card-hidden'}`}
+              <div key={index} className={`result-card bg-[#1b0904] border border-white/10 px-8 py-10 text-center hover:border-white/30 group relative flex flex-col items-center justify-center min-h-[200px] ${visible ? 'result-card-visible' : 'result-card-hidden'}`}
                 style={{ transitionDelay: visible ? `${index * 150}ms` : '0ms', transition: `opacity 0.8s ease ${index*150}ms, transform 0.8s ease ${index*150}ms` }}>
                 <div className="result-icon">{result.icon}</div>
                 <div className="result-number text-4xl font-bold mb-3 group-hover:scale-[1.03] transition-transform duration-500">{result.number}</div>

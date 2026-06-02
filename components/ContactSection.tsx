@@ -19,7 +19,7 @@ export default function StatementSection() {
   return (
     <section>
       {/* ── DESKTOP: animated "Design That Flow You" ── */}
-      <div className="hidden md:flex relative min-h-[100dvh] flex-col justify-between bg-black px-12 lg:px-16 pt-10 pb-16 overflow-x-hidden">
+      <div className="hidden md:flex relative min-h-[100dvh] flex-col justify-between bg-[#1b0904] px-12 lg:px-16 pt-10 pb-16 overflow-x-hidden">
         <div className="flex-1 flex flex-col justify-center gap-0 max-w-[100vw]">
           <div className="flex items-start justify-between gap-2 w-full">
             <span className="text-white font-sans font-semibold leading-[0.95] shrink min-w-0" style={{ fontSize: displaySize }}>Design</span>

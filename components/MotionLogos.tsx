@@ -32,13 +32,13 @@ export default function MotionLogo() {
 
   return (<>
     {/* MOBILE */}
-    <div className="mobile-nav" style={{ background:'#000', borderTop:'1px solid rgba(255,255,255,0.1)', padding:'20px 0', overflow:'hidden' }}>
+    <div className="mobile-nav" style={{ background:'#1b0904', borderTop:'1px solid rgba(255,255,255,0.1)', padding:'20px 0', overflow:'hidden' }}>
       <p style={{ textAlign:'center', fontSize:9, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'rgba(255,255,255,0.3)', marginBottom:16 }}>
         Trusted by Leading Brands
       </p>
       <div style={{ position:'relative', overflow:'hidden' }}>
-        <div style={{ position:'absolute', left:0, top:0, height:'100%', width:40, zIndex:10, background:'linear-gradient(to right, black, transparent)' }} />
-        <div style={{ position:'absolute', right:0, top:0, height:'100%', width:40, zIndex:10, background:'linear-gradient(to left, black, transparent)' }} />
+        <div style={{ position:'absolute', left:0, top:0, height:'100%', width:40, zIndex:10, background:'linear-gradient(to right, #1b0904, transparent)' }} />
+        <div style={{ position:'absolute', right:0, top:0, height:'100%', width:40, zIndex:10, background:'linear-gradient(to left, #1b0904, transparent)' }} />
         <motion.div style={{ display:'flex', gap:32, width:'max-content' }} animate={{ x: ['0%', '-50%'] }} transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}>
           {doubled.map((logo, i) => (
             <div key={i} style={{ position:'relative', height:40, width:120, flexShrink:0 }}>
@@ -51,9 +51,9 @@ export default function MotionLogo() {
     </div>
 
     {/* DESKTOP */}
-    <section className="desktop-nav" style={{ background:'#000', borderTop:'1px solid rgba(255,255,255,0.1)', overflow:'hidden', padding:'40px 0', position:'relative' }}>
-      <div className="pointer-events-none" style={{ position:'absolute', left:0, top:0, height:'100%', width:96, zIndex:10, background:'linear-gradient(to right, black, transparent)' }} />
-      <div className="pointer-events-none" style={{ position:'absolute', right:0, top:0, height:'100%', width:96, zIndex:10, background:'linear-gradient(to left, black, transparent)' }} />
+    <section className="desktop-nav" style={{ background:'#1b0904', borderTop:'1px solid rgba(255,255,255,0.1)', overflow:'hidden', padding:'40px 0', position:'relative' }}>
+      <div className="pointer-events-none" style={{ position:'absolute', left:0, top:0, height:'100%', width:96, zIndex:10, background:'linear-gradient(to right, #1b0904, transparent)' }} />
+      <div className="pointer-events-none" style={{ position:'absolute', right:0, top:0, height:'100%', width:96, zIndex:10, background:'linear-gradient(to left, #1b0904, transparent)' }} />
       <p style={{ textAlign:'center', fontSize:11, fontWeight:600, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.4)', marginBottom:32 }}>
         Trusted by Leading Brands
       </p>
