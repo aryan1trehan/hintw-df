@@ -33,7 +33,7 @@ export default function MotionLogo() {
   return (<>
     {/* MOBILE */}
     <div className="mobile-nav" style={{ background:'#1b0904', borderTop:'1px solid rgba(255,255,255,0.1)', padding:'20px 0', overflow:'hidden' }}>
-      <p style={{ textAlign:'center', fontSize:9, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'rgba(255,255,255,0.3)', marginBottom:16 }}>
+      <p style={{ textAlign:'center', fontSize:9, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'rgba(157,176,195,0.3)', marginBottom:16 }}>
         Trusted by Leading Brands
       </p>
       <div style={{ position:'relative', overflow:'hidden' }}>
@@ -54,7 +54,7 @@ export default function MotionLogo() {
     <section className="desktop-nav" style={{ background:'#1b0904', borderTop:'1px solid rgba(255,255,255,0.1)', overflow:'hidden', padding:'40px 0', position:'relative' }}>
       <div className="pointer-events-none" style={{ position:'absolute', left:0, top:0, height:'100%', width:96, zIndex:10, background:'linear-gradient(to right, #1b0904, transparent)' }} />
       <div className="pointer-events-none" style={{ position:'absolute', right:0, top:0, height:'100%', width:96, zIndex:10, background:'linear-gradient(to left, #1b0904, transparent)' }} />
-      <p style={{ textAlign:'center', fontSize:11, fontWeight:600, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.4)', marginBottom:32 }}>
+      <p style={{ textAlign:'center', fontSize:11, fontWeight:600, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(157,176,195,0.4)', marginBottom:32 }}>
         Trusted by Leading Brands
       </p>
       <div style={{ overflow:'hidden' }}>

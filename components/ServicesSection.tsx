@@ -51,17 +51,17 @@ export default function ServicesSection() {
       <div className="hidden md:block py-20 md:py-24 bg-[#1b0904]">
         <div className="container mx-auto px-12 lg:px-16">
           <div className="text-center mb-14 md:mb-16">
-            <span className="text-white/50 text-xs font-semibold uppercase tracking-[0.3em] mb-4 block">Our Services</span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl text-white font-serif font-light">Focused. Strategic. Built for Scale.</h2>
+            <span className="text-[#9db0c3]/50 text-xs font-semibold uppercase tracking-[0.3em] mb-4 block">Our Services</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl text-[#9db0c3] font-serif font-light">Focused. Strategic. Built for Scale.</h2>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-px bg-white/10">
             {services.map((service, index) => (
               <Link key={index} href={service.link} className="service-card bg-[#1b0904] p-8 md:p-10 transition-all duration-300 hover:bg-white group flex flex-col min-h-0">
-                <div className="text-white/60 mb-6 group-hover:text-black group-hover:scale-110 transition-all duration-300">{icons[index]}</div>
-                <h3 className="service-title text-lg font-semibold text-white uppercase tracking-widest mb-3 transition-colors duration-300">{service.title}</h3>
+                <div className="text-[#9db0c3]/60 mb-6 group-hover:text-black group-hover:scale-110 transition-all duration-300">{icons[index]}</div>
+                <h3 className="service-title text-lg font-semibold text-[#9db0c3] uppercase tracking-widest mb-3 transition-colors duration-300">{service.title}</h3>
                 <div className="h-px w-8 bg-white/20 mb-4 group-hover:w-16 group-hover:bg-[#1b0904] transition-all duration-300" />
-                <p className="service-desc text-white/60 leading-relaxed text-sm flex-1 transition-colors duration-300">{service.description}</p>
-                <span className="service-link mt-6 text-white/40 text-xs uppercase tracking-[0.2em] transition-colors duration-300">Learn More →</span>
+                <p className="service-desc text-[#9db0c3]/60 leading-relaxed text-sm flex-1 transition-colors duration-300">{service.description}</p>
+                <span className="service-link mt-6 text-[#9db0c3]/40 text-xs uppercase tracking-[0.2em] transition-colors duration-300">Learn More →</span>
               </Link>
             ))}
           </div>

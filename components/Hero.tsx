@@ -83,20 +83,20 @@ export default function Hero() {
     {/* ── MOBILE HERO: black bg, white text ── */}
     <section className="md:hidden bg-[#1b0904] pt-[72px]">
       <div className="px-5 pt-8 pb-6">
-        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-white/40 mb-[10px]">
+        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#9db0c3]/40 mb-[10px]">
           Elite Marketing &amp; Growth Partner
         </p>
-        <h1 className="font-serif text-[30px] leading-[1.1] tracking-[-0.02em] text-white font-normal mb-[14px]">
+        <h1 className="font-serif text-[30px] leading-[1.1] tracking-[-0.02em] text-[#9db0c3] font-normal mb-[14px]">
           Crafting brands that stand above the noise.
         </h1>
-        <p className="text-[13px] leading-[1.65] text-white/60 mb-0">
+        <p className="text-[13px] leading-[1.65] text-[#9db0c3]/60 mb-0">
           We engineer scalable growth for brands that demand authority, not just visibility.
         </p>
         <div className="flex gap-[10px] mt-5">
           <Link href="/clientele" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-white border-[1.5px] border-white" style={{color:"#1a0905"}}>
             View Portfolio →
           </Link>
-          <Link href="/services" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-transparent text-white border-[1.5px] border-white/40">
+          <Link href="/services" className="flex-1 text-center py-3 px-[10px] rounded-lg text-[12px] font-semibold bg-transparent text-[#9db0c3] border-[1.5px] border-white/40">
             Our Services
           </Link>
         </div>
@@ -110,18 +110,18 @@ export default function Hero() {
       <div style={{ position:'absolute', inset:0, backgroundImage:`url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`, backgroundSize:'200px', opacity:0.5, pointerEvents:'none' }} />
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         <div className="mb-8">
-          <span className="text-white/40 text-xs font-semibold uppercase tracking-[0.3em]">Elite Marketing &amp; Growth Partner</span>
+          <span className="text-[#9db0c3]/40 text-xs font-semibold uppercase tracking-[0.3em]">Elite Marketing &amp; Growth Partner</span>
         </div>
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-light mb-6 leading-tight text-white">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-light mb-6 leading-tight text-[#9db0c3]">
           Crafting brands that<br />stand above the noise
         </h1>
         <div className="h-px w-16 bg-white/20 mx-auto mb-8" />
-        <p className="text-lg md:text-xl text-white/60 max-w-3xl mx-auto mb-12">
+        <p className="text-lg md:text-xl text-[#9db0c3]/60 max-w-3xl mx-auto mb-12">
           We engineer scalable growth for brands that demand authority, not just visibility.
         </p>
         <div className="flex flex-row gap-4 justify-center">
           <Link href="/clientele" className="bg-white text-black px-10 py-4 font-semibold text-sm uppercase tracking-[0.2em] transition-all duration-300 hover:scale-105">View Portfolio</Link>
-          <Link href="/services" className="border border-white text-white px-10 py-4 font-semibold text-sm uppercase tracking-[0.2em] transition-all duration-300 hover:bg-white hover:text-black">Our Services</Link>
+          <Link href="/services" className="border border-white text-[#9db0c3] px-10 py-4 font-semibold text-sm uppercase tracking-[0.2em] transition-all duration-300 hover:bg-white hover:text-black">Our Services</Link>
         </div>
       </div>
     </section>

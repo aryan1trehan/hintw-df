@@ -28,8 +28,8 @@ function CanvasCard({ id, title, subtitle, initFn }: { id: string; title: string
         <canvas ref={canvasRef} style={{ display:'block' }} />
       </div>
       <div style={{ padding:'20px 22px 24px' }}>
-        <h3 style={{ fontFamily:'var(--font-montserrat)', fontSize:'1rem', fontWeight:700, color:'#fff', marginBottom:6, letterSpacing:'-0.2px' }}>{title}</h3>
-        <p style={{ fontFamily:'var(--font-montserrat)', fontSize:'.85rem', color:'rgba(255,255,255,0.45)' }}>{subtitle}</p>
+        <h3 style={{ fontFamily:'var(--font-montserrat)', fontSize:'1rem', fontWeight:700, color:'#9db0c3', marginBottom:6, letterSpacing:'-0.2px' }}>{title}</h3>
+        <p style={{ fontFamily:'var(--font-montserrat)', fontSize:'.85rem', color:'rgba(157,176,195,0.45)' }}>{subtitle}</p>
       </div>
     </div>
   )
@@ -152,7 +152,7 @@ function initChart(canvas: HTMLCanvasElement) {
       ctx.beginPath(); ctx.moveTo(pX+pR,pY); ctx.lineTo(pX+pW-pR,pY); ctx.arcTo(pX+pW,pY,pX+pW,pY+pR,pR); ctx.lineTo(pX+pW,pY+pH-pR); ctx.arcTo(pX+pW,pY+pH,pX+pW-pR,pY+pH,pR); ctx.lineTo(pX+pR,pY+pH); ctx.arcTo(pX,pY+pH,pX,pY+pH-pR,pR); ctx.lineTo(pX,pY+pR); ctx.arcTo(pX,pY,pX+pR,pY,pR); ctx.closePath()
       ctx.fillStyle = '#203b37'; ctx.fill()
       ctx.strokeStyle = 'rgba(110,232,202,0.35)'; ctx.lineWidth = 1*DPR; ctx.stroke()
-      ctx.fillStyle = '#ffffff'; ctx.font = `500 ${13*DPR}px -apple-system,sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('100k+ views', peakX, pY+pH/2)
+      ctx.fillStyle = '#9db0c3'; ctx.font = `500 ${13*DPR}px -apple-system,sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('100k+ views', peakX, pY+pH/2)
       ctx.globalAlpha = 1
     }
     raf = requestAnimationFrame(draw)
@@ -197,7 +197,7 @@ function initHierarchy(canvas: HTMLCanvasElement) {
   function drawLinkedIn(cx: number,cy: number,size: number,alpha: number) {
     ctx.save(); ctx.globalAlpha=alpha; const s=size*0.56,r=s*0.18
     roundRect(cx-s/2,cy-s/2,s,s,r); ctx.fillStyle='#0A66C2'; ctx.fill()
-    ctx.fillStyle='#ffffff'; ctx.font=`bold ${s*0.62}px -apple-system,sans-serif`; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('in',cx,cy+s*0.03); ctx.restore()
+    ctx.fillStyle='#9db0c3'; ctx.font=`bold ${s*0.62}px -apple-system,sans-serif`; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('in',cx,cy+s*0.03); ctx.restore()
   }
   function drawNode(cx: number,cy: number,size: number,iconFn: (cx:number,cy:number,s:number,a:number)=>void,scale: number,alpha: number,isTop: boolean) {
     if(scale<=0||alpha<=0) return
@@ -293,7 +293,7 @@ function initProgress(canvas: HTMLCanvasElement) {
     const cA=clamp(easeOut(loopT/0.5),0,1)
     ctx.save();ctx.globalAlpha=cA;ctx.beginPath();ctx.arc(cX,cY,cR,0,Math.PI*2);ctx.fillStyle='#0e1a19';ctx.fill();ctx.strokeStyle='rgba(255,255,255,0.08)';ctx.lineWidth=3.5*DPR;ctx.stroke()
     ctx.beginPath();ctx.arc(cX,cY,cR,-Math.PI/2,-Math.PI/2+Math.PI*2*cP);ctx.strokeStyle='#6ee8ca';ctx.lineWidth=3.5*DPR;ctx.lineCap='round';ctx.stroke()
-    ctx.fillStyle='#ffffff';ctx.font=`600 ${12*DPR}px -apple-system,sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(Math.round(cP/0.67*67)+'%',cX,cY);ctx.restore()
+    ctx.fillStyle='#9db0c3';ctx.font=`600 ${12*DPR}px -apple-system,sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(Math.round(cP/0.67*67)+'%',cX,cY);ctx.restore()
     const avR=24*DPR,avStartX=pX+14*DPR,avY=pY-avR-4*DPR
     logoSrcs.forEach((_,i)=>{
       const avA=clamp(easeOutBack(clamp((loopT-0.3-i*0.12)/0.4,0,1)),0,1)
@@ -308,7 +308,7 @@ function initProgress(canvas: HTMLCanvasElement) {
     ctx.save();ctx.globalAlpha=plusA;ctx.beginPath();ctx.arc(plusX,avY,avR,0,Math.PI*2);ctx.fillStyle='#1e3b36';ctx.fill();ctx.strokeStyle='rgba(110,232,202,0.3)';ctx.lineWidth=1.5*DPR;ctx.stroke();ctx.fillStyle='rgba(255,255,255,0.7)';ctx.font=`300 ${18*DPR}px -apple-system`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('+',plusX,avY);ctx.restore()
     const firstAvX=avStartX+avR,bA=clamp(easeOutBack(clamp((loopT-0.5)/0.35,0,1)),0,1)
     const bW=34*DPR,bH=18*DPR,bR2=9*DPR,bX=firstAvX-bW/2,bY2=avY-avR-bH*0.3
-    ctx.save();ctx.globalAlpha=bA;roundRect(bX,bY2,bW,bH,bR2);ctx.fillStyle='#2d7a6a';ctx.fill();ctx.fillStyle='#ffffff';ctx.font=`700 ${9.5*DPR}px -apple-system,sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('1st',bX+bW/2,bY2+bH/2);ctx.restore()
+    ctx.save();ctx.globalAlpha=bA;roundRect(bX,bY2,bW,bH,bR2);ctx.fillStyle='#2d7a6a';ctx.fill();ctx.fillStyle='#9db0c3';ctx.font=`700 ${9.5*DPR}px -apple-system,sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('1st',bX+bW/2,bY2+bH/2);ctx.restore()
     raf=requestAnimationFrame(draw)
   }
   raf=requestAnimationFrame(draw)
@@ -320,7 +320,7 @@ export default function BentoFeatures() {
     <section>
       {/* ── MOBILE: dark bg, 2x2 grid ── */}
       <div className="md:hidden bg-[#111] px-5 py-8">
-        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-white/40 mb-4">Why Choose Us</p>
+        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#9db0c3]/40 mb-4">Why Choose Us</p>
         <div className="grid grid-cols-2 gap-[10px]">
           {[
             { title: 'Real data, not guesswork', desc: 'Every campaign is data-driven and optimised for results' },
@@ -329,8 +329,8 @@ export default function BentoFeatures() {
             { title: 'Client-first approach', desc: 'Your goals become our KPIs' },
           ].map((p, i) => (
             <div key={i} className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-[10px] px-3 py-4">
-              <h3 className="text-[12px] font-bold text-white mb-[6px] leading-[1.3]">{p.title}</h3>
-              <p className="text-[10px] text-white/50 leading-[1.5]">{p.desc}</p>
+              <h3 className="text-[12px] font-bold text-[#9db0c3] mb-[6px] leading-[1.3]">{p.title}</h3>
+              <p className="text-[10px] text-[#9db0c3]/50 leading-[1.5]">{p.desc}</p>
             </div>
           ))}
         </div>

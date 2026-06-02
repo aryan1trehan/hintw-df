@@ -6,7 +6,7 @@ export default function LongGameSection() {
       {/* ── MOBILE: dark bg, stacked dark cards, exactly like wireframe ── */}
       <div className="md:hidden bg-[#111] px-5 py-8">
         <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#555] mb-[10px]">Our Philosophy</p>
-        <h2 className="font-serif text-[22px] leading-[1.2] text-white font-normal mb-1">Built for the Long Game</h2>
+        <h2 className="font-serif text-[22px] leading-[1.2] text-[#9db0c3] font-normal mb-1">Built for the Long Game</h2>
         <p className="text-[13px] text-[#666] mb-1">Through strategy, design, and performance.</p>
         <p className="text-[13px] text-[#666] leading-[1.65] mt-[10px] mb-[18px]">
           We craft brands with presence, precision, and authority. Our methodology combines strategic foresight,
@@ -26,7 +26,7 @@ export default function LongGameSection() {
             </div>
           ))}
         </div>
-        <Link href="/why-choose-us" className="block w-full text-center py-3 rounded-lg text-[12px] font-semibold bg-transparent text-white border-[1.5px] border-white/40">
+        <Link href="/why-choose-us" className="block w-full text-center py-3 rounded-lg text-[12px] font-semibold bg-transparent text-[#9db0c3] border-[1.5px] border-white/40">
           Explore Our Methodology →
         </Link>
       </div>
@@ -37,13 +37,13 @@ export default function LongGameSection() {
           <div className="max-w-7xl mx-auto">
             <div className="inline-flex items-center gap-2 border border-white/20 rounded-full px-4 py-1.5 mb-10">
               <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
-              <span className="text-white/60 text-xs uppercase tracking-[0.25em] font-medium">Our Philosophy</span>
+              <span className="text-[#9db0c3]/60 text-xs uppercase tracking-[0.25em] font-medium">Our Philosophy</span>
             </div>
             <div className="grid grid-cols-2 gap-14 lg:gap-16 items-center">
               <div>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-tight mb-6">Built for the Long Game</h2>
-                <p className="text-xl font-semibold text-white/70 mb-6">Through strategy, design, and performance</p>
-                <p className="text-white/50 text-base leading-relaxed mb-10">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#9db0c3] leading-tight mb-6">Built for the Long Game</h2>
+                <p className="text-xl font-semibold text-[#9db0c3]/70 mb-6">Through strategy, design, and performance</p>
+                <p className="text-[#9db0c3]/50 text-base leading-relaxed mb-10">
                   We craft brands with presence, precision, and authority. Our methodology combines strategic foresight,
                   behavioral psychology, and market dynamics to create brands that appreciate in value over time.
                   We&apos;re not here to make noise—we&apos;re here to build empires.
@@ -60,11 +60,11 @@ export default function LongGameSection() {
                 ].map((card, i) => (
                   <div key={i} className="flex items-start gap-5 border border-white/10 rounded-xl px-6 py-5 hover:border-white/20 transition-colors duration-300">
                     <div className="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d={card.d} /></svg>
+                      <svg className="w-5 h-5 text-[#9db0c3]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d={card.d} /></svg>
                     </div>
                     <div>
-                      <h3 className="text-white font-semibold text-base mb-1">{card.title}</h3>
-                      <p className="text-white/50 text-sm leading-relaxed">{card.desc}</p>
+                      <h3 className="text-[#9db0c3] font-semibold text-base mb-1">{card.title}</h3>
+                      <p className="text-[#9db0c3]/50 text-sm leading-relaxed">{card.desc}</p>
                     </div>
                   </div>
                 ))}
