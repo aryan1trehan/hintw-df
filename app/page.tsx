@@ -11,7 +11,7 @@ import Header from '@/components/Header'
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-x-hidden" style={{ backgroundColor: '#1b0904', color: '#1a0905' }}>
+    <main className="min-h-screen bg-bg overflow-x-hidden">
       <Header />
       <Hero />
       <MotionLogo />
